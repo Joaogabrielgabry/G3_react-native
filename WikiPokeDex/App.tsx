@@ -1,11 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import {  Text, View } from 'react-native';
+
+import { View } from 'react-native';
+import { Home } from './src/Pages/Home';
 
 export default function App() {
   return (
-    <View>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{width:'100%', height:'100%', flexDirection:'column', justifyContent:'center', alignItems:'center', margin:0, padding:0}}>
+      <Home />
     </View>
   );
 }

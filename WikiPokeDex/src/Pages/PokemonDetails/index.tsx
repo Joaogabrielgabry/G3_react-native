@@ -9,7 +9,6 @@ export function Infos() {
     return (
         <View style={GlobalCss.body}>
             <Header>
-            
             </Header>
             <ScrollView style={GlobalCss.PrincipalContent}>
                 Colocar seu conteudo aqui!

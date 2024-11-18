@@ -4,7 +4,7 @@ import { FooterStyle } from './Footer';
 
 export function Footer() {
     return (
-        <View>
+        <View style={FooterStyle.containerFooter}>
             <Text>Header</Text>
         </View>
     );

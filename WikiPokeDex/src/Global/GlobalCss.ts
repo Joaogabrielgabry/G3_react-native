@@ -4,13 +4,14 @@ export const GlobalCss = StyleSheet.create({
     body: {
         flex: 1,
         flexDirection: 'column',
+        width: '100%',
         justifyContent: 'center',
-        padding: 10,
+        alignItems: 'center',
         backgroundColor: '#f2b807'
     },
     PrincipalContent:{
-        flexGrow: 1,
-        margin: 0,
-        padding: 0,
+        flex: 1,
+        flexDirection: 'column',
+        gap: 15,
     }
 });
