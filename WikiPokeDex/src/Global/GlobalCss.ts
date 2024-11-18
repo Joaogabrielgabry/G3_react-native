@@ -8,4 +8,9 @@ export const GlobalCss = StyleSheet.create({
         padding: 10,
         backgroundColor: '#f2b807'
     },
+    PrincipalContent:{
+        flexGrow: 1,
+        margin: 0,
+        padding: 0,
+    }
 });
