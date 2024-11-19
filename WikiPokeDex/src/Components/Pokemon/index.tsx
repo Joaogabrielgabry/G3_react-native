@@ -1,18 +1,11 @@
-import React from "react";
-import { Image, Text, View } from "react-native";
-
-interface PokemonProps {
+export interface PokemonListProps {
     index: string;
     name: string;
-    url: string;
+    sprites:{
+        front_default: string;
+    }
+    species: {
+        name: string;
+    }
 }
 
-export function Pokemon({ index, name, url }: PokemonProps) {
-
-    return (
-        <View key={index}>
-            <Image source={{uri: url}}/>
-            <Text>{name}</Text>
-        </View>
-    );
-}
