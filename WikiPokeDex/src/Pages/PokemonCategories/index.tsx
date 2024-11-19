@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { CategoriesStyle } from './Categories';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
-import { getPokemonTypes } from '../../Routes/PokemonCategoriesList';
+import { getPokemonTypes } from '../../Api/PokemonCategoriesList';
 
 
 interface PokemonTypeProps {

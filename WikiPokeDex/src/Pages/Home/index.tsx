@@ -6,7 +6,7 @@ import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
 import { PokemonListProps } from '../../Components/PokemonForm';
-import { getPokemonList } from '../../Routes/PokemonList';
+import { getPokemonList } from '../../Api/PokemonList';
 
 export function Home() {
     const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);

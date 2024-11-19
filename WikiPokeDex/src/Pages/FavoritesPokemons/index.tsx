@@ -5,6 +5,7 @@ import { Header } from '../../Components/Header';
 import { Footer } from '../../Components/MyTabs';
 import { api } from '../../Api/Api'; 
 
+
 export function Favorite() {
   
   const [favorites, setFavorites] = useState([]);

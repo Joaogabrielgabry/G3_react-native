@@ -4,7 +4,6 @@ export const DetailsStyle = StyleSheet.create({
     modalBackground: {
         flex: 1,
         backgroundColor: '#f2b807',
-        justifyContent: 'center',
         alignItems: 'center',
     },
     modalContent: {
@@ -16,17 +15,22 @@ export const DetailsStyle = StyleSheet.create({
     },
     pokemonImage: {
         width: 250,
-        height: 250,
+        height: 300,
         marginBottom: 20,
     },
     pokemonName: {
-        fontSize: 24,
+        fontSize: 30,
         fontWeight: 'bold',
         marginBottom: 10,
     },
     pokemonSpecies: {
         fontSize: 18,
-        marginBottom: 20,
+        marginBottom: 10,
+        fontWeight: 'bold',
+    },
+    pokemonDetails: {
+        fontSize: 16,
+        marginBottom: 8,
     },
     closeButton: {
         backgroundColor: '#f00',
@@ -48,22 +52,22 @@ export const DetailsStyle = StyleSheet.create({
     },
     divider: {
         width: '100%',
-        height: 1,
         marginVertical: 20,
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        alignItems: 'center',
     },
-    topNav:{
-        width:'100%',
-        height: "50%",
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
+    topNav: {
+        width: '100%',
+        alignItems: 'center',
         paddingRight: 25,
         paddingLeft: 25,
         paddingBottom: 5,
         margin: 0,
     },
+    pokemonCaracteristics: {
+        width: '100%',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
 });
+
