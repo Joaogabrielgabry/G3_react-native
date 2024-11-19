@@ -4,8 +4,6 @@ import { CategoriesStyle } from './Categories';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
 import { getPokemonTypes } from '../../Routes/PokemonCategoriesList';
-import { getPokemonDetails } from '../../Routes/PokemonList/index';
-import { api } from '../../Api/Api';
 
 
 interface PokemonTypeProps {
@@ -38,30 +36,10 @@ export function PokemonCategories() {
         fetchTypes();
     }, []);
 
-    const fetchPokemonByType = async (type: string) => {
-        try {
-            const response = await api.get<{ pokemon: { pokemon: { name: string; url: string } }[] }>(
-                `/type/${type}`
-            );
-
-            const pokemonData = response.data.pokemon.map((entry) => entry.pokemon);
-
-            const detailedPokemonList = await Promise.all(
-                pokemonData.map((pokemon) => getPokemonDetails(pokemon.url))
-            );
-
-            setPokemonList(detailedPokemonList);
-            setSelectedType(type);
-        } catch (error) {
-            console.error('Erro ao buscar Pokémon por tipo:', error);
-        }
-    };
-
     return (
         <View style={GlobalCss.body}>
             <Header />
             <View style={GlobalCss.PrincipalContent}>
-                {/* Exibir lista de tipos */}
                 <FlatList
                     data={types}
                     keyExtractor={(item) => item.name}
@@ -71,7 +49,6 @@ export function PokemonCategories() {
                                 CategoriesStyle.speciesItem,
                                 item.name === selectedType && CategoriesStyle.selectedItem,
                             ]}
-                            onPress={() => fetchPokemonByType(item.name)}
                         >
                             <Text style={CategoriesStyle.speciesText}>{item.name}</Text>
                         </TouchableOpacity>
