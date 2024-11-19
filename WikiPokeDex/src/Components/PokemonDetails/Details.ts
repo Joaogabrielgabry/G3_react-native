@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const DetailsStyle = StyleSheet.create({
     modalBackground: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: '#f2b807',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -15,8 +15,8 @@ export const DetailsStyle = StyleSheet.create({
         alignItems: 'center',
     },
     pokemonImage: {
-        width: 150,
-        height: 150,
+        width: 250,
+        height: 250,
         marginBottom: 20,
     },
     pokemonName: {
@@ -36,5 +36,34 @@ export const DetailsStyle = StyleSheet.create({
     closeButtonText: {
         color: '#fff',
         fontWeight: 'bold',
+    },
+    favoriteButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    favoriteButton: {
+        backgroundColor: '#90ee90',
+        padding: 10,
+        borderRadius: 5,
+    },
+    divider: {
+        width: '100%',
+        height: 1,
+        marginVertical: 20,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    topNav:{
+        width:'100%',
+        height: "50%",
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingRight: 25,
+        paddingLeft: 25,
+        paddingBottom: 5,
+        margin: 0,
     },
 });
