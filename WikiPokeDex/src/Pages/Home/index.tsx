@@ -6,7 +6,7 @@ import { Header } from '../../Components/Header';
 import { Footer } from '../../Components/Footer';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
-import { PokemonListProps } from '../../Components/Pokemon';
+import { PokemonListProps } from '../../Components/PokemonForm';
 import { getPokemonList } from '../../Routes/PokemonList';
 
 export function Home() {

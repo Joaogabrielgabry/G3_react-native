@@ -1,6 +1,6 @@
 import { api } from "../../Api/Api";
 import { AxiosResponse } from "axios";
-import { PokemonListProps } from "../../Components/Pokemon";
+import { PokemonListProps } from "../../Components/PokemonForm";
 
 interface PokemonDetails {
     id: number;
