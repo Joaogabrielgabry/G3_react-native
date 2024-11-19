@@ -3,20 +3,22 @@ import { View, Text, ViewStyle, Image } from 'react-native';
 import { CardStyles } from './Card';
 
 interface CardProps {
+    index: string;
     containerStyle?: ViewStyle;
-    title: string;
-    image?: string;
+    name: string;
+    url: string;
 }
-
-export function Card({ containerStyle, image, title }: CardProps) {
+// Refatorando
+export function Card({ containerStyle, name, url }: CardProps) {
     return (
-        <View style={[CardStyles.cardContainer, containerStyle]}>
-            <View style={CardStyles.containerImage}>
-                <Image style={CardStyles.imageCard} source={{ uri: image }}/>
-            </View>
-            <Text style={{width:'100%', textAlign:'center'}}>
-                {title}
-            </Text>
-        </View>
+        <></>
+        // <View style={[CardStyles.cardContainer, containerStyle]}>
+        //     <View style={CardStyles.containerImage}>
+        //         <Image style={CardStyles.imageCard} source={{ uri: image }}/>
+        //     </View>
+        //     <Text style={{width:'100%', textAlign:'center'}}>
+        //         {title}
+        //     </Text>
+        // </View> 
     );
 }
