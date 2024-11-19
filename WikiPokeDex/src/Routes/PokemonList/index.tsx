@@ -22,10 +22,17 @@ export async function getPokemonDetails(url: string): Promise<PokemonDetails> {
     return response.data;
 }
 
-//Pegar todos os pokemons
+
+// Pegar todos os pokemons com paginação
 export async function getPokemonList(): Promise<PokemonListProps[]> {
-    const response = await api.get<{ results: { name: string; url: string }[] }>('/pokemon/');
-    const pokemonList = response.data.results;
+    let pokemonList: { name: string; url: string }[] = [];
+    let nextUrl: string | null = '/pokemon/'; 
+
+    while (nextUrl) {
+        const response: AxiosResponse<{ results: { name: string; url: string }[], next: string | null }> = await api.get(nextUrl);
+        pokemonList = pokemonList.concat(response.data.results);
+        nextUrl = response.data.next;
+    }
 
     const detailedPokemonList = await Promise.all(
         pokemonList.map((pokemon) => getPokemonDetails(pokemon.url))
