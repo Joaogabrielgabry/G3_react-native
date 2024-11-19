@@ -6,19 +6,15 @@ export const HomeStyles = StyleSheet.create({
         flexWrap: 'wrap',
         width: '100%',
         backgroundColor: '#f2b807',
-        padding: 10,
+        padding: 5,
         flex: 1,
-    },
-
-    card:{
-        width:150,
-        height:150,
     },
 
     PrincipalContentCard:{
         flexDirection: 'row',
         justifyContent:'space-around',
-        width: '100%',
+        width: 200,
+        height: 200,
         flexWrap: 'wrap',
         padding: 10,
     }

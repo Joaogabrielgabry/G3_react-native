@@ -45,6 +45,8 @@ export function Home() {
                 showsVerticalScrollIndicator={false}
             >
                 <FlatList
+                    style= { {width: '100%'} }
+                    numColumns={2}
                     data={pokemonList.filter(Boolean)}
                     keyExtractor={(item) => item.index}
                     renderItem={({ item }) => (
@@ -54,7 +56,6 @@ export function Home() {
                                 name={item.name}
                                 urlImg={item.sprites.front_default}
                                 species={item.species.name}
-                                containerStyle={{}}
                                 onPress={() => openModal(item)}
                             />
                         </View>

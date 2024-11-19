@@ -5,12 +5,11 @@ export const CardStyles = StyleSheet.create({
         flexDirection:'column',
         width:'100%',
         backgroundColor:'#ffff',
-        padding:25,
+        padding: 25,
         borderRadius: 15,
-        gap: 15,
         alignContent:'center',
         justifyContent:'center',
-        margin: 10,
+        margin: 2,
 
     },
     containerImage:{

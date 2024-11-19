@@ -4,17 +4,16 @@ import { CardStyles } from './Card';
 
 interface CardProps {
     index: string;
-    containerStyle?: ViewStyle;
     name: string;
     species: string;
     urlImg: string;
     onPress?: () => void;
 }
 
-export function Card({ containerStyle, name, urlImg, species, onPress }: CardProps) {
+export function Card({  name, urlImg, species, onPress }: CardProps) {
     return (
         <TouchableOpacity
-            style={[CardStyles.cardContainer, containerStyle]}
+            style={CardStyles.cardContainer}
             onPress={onPress}
         >
             <View style={CardStyles.containerImage}>
