@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { SearchStyles } from './Search';
+import { InputStyle } from './Input';
 
-export function SearchBar() {
+export function Input() {
     return (
         <View>
             <Text>SearchBar</Text>

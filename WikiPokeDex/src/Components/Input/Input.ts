@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
 
-export const SearchStyles = StyleSheet.create({
+export const InputStyle = StyleSheet.create({
 
 });

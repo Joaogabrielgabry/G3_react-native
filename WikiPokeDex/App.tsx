@@ -1,11 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import {  Text, View } from 'react-native';
+
+// import { View } from 'react-native';
+// import { Home } from './src/Pages/Home';
+import { NavigationContainer } from '@react-navigation/native';
+import { MyTabs } from './src/Components/MyTabs';
 
 export default function App() {
   return (
-    <View>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <MyTabs />
+      </NavigationContainer>
   );
 }
