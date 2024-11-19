@@ -1,11 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { SearchStyles } from './Search';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export function SearchBar() {
     return (
-        <View>
-            <Text>SearchBar</Text>
+        <View style={SearchStyles.container}>
+            <TextInput
+                style={SearchStyles.input}
+                placeholder="Search Pokémon"
+                placeholderTextColor="#aaa"
+            />
+            <FontAwesome name="search" size={20} color="#aaa" style={SearchStyles.icon} />
         </View>
     );
 }

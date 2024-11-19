@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { HomeStyles } from './Home';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
