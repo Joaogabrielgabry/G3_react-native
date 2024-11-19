@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity, Image } from 'react-native';
 import { DetailsStyle } from './Details';
-import pokemon from '../../../assets/pokemon.png';
+import Pokemon from '../../../assets/pokemon.png';
 
 interface PokemonDetailsProps {
     isVisible: boolean;
@@ -28,14 +28,16 @@ export function PokemonDetails({ isVisible, onClose, pokemon }: PokemonDetailsPr
             onRequestClose={onClose}
         >
             <View style={DetailsStyle.modalBackground}>
+                <View style={DetailsStyle.topNav}>
+                    <Image style={{ width: 200, height: 200 }} source={Pokemon} />
+                </View>
                 <View style={DetailsStyle.modalContent}>
-                    <View style={DetailsStyle.topNav}>
-                        <Image style={{ width: 150, height: 150 }} source={pokemon} />
-                    </View>
                     <Image
                         source={{ uri: pokemon.sprites.front_default }}
                         style={DetailsStyle.pokemonImage}
                     />
+                </View>
+                <View style={DetailsStyle.pokemonCaracteristics} >
                     <Text style={DetailsStyle.pokemonName}>{pokemon.name}</Text>
                     <Text style={DetailsStyle.pokemonSpecies}>
                         Espécie: {pokemon.species.name}
