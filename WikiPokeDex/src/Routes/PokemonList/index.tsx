@@ -44,7 +44,7 @@ export async function getPokemonList(): Promise<PokemonListProps[]> {
             front_default: pokemon.sprites.front_default,
         },
         species: {
-            name: pokemon.types.map((type) => type.type.name).join(", "),
+            name: pokemon.types.map((type) => type.type.name).join("/"),
         },
     }));
 }
