@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, ScrollView, FlatList } from 'react-native';
 import { HomeStyles } from './Home';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
 import { Footer } from '../../Components/Footer';
 import { Card } from '../../Components/Card';
+import { PokemonDetails } from '../../Components/PokemonDetails';
 import { PokemonListProps } from '../../Components/Pokemon';
 import { getPokemonList } from '../../Routes/PokemonList';
 
 export function Home() {
     const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
+    const [selectedPokemon, setSelectedPokemon] = useState<PokemonListProps | null>(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
         async function fetchPokemonList() {
@@ -23,10 +26,24 @@ export function Home() {
         fetchPokemonList();
     }, []);
 
+    const openModal = (pokemon: PokemonListProps) => {
+        setSelectedPokemon(pokemon);
+        setIsModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setIsModalVisible(false);
+        setSelectedPokemon(null);
+    };
+
     return (
         <View style={GlobalCss.body}>
             <Header />
-            <ScrollView style={GlobalCss.PrincipalContent} horizontal={false} showsVerticalScrollIndicator={false}>
+            <ScrollView
+                style={GlobalCss.PrincipalContent}
+                horizontal={false}
+                showsVerticalScrollIndicator={false}
+            >
                 <FlatList
                     data={pokemonList.filter(Boolean)}
                     keyExtractor={(item) => item.index}
@@ -36,13 +53,20 @@ export function Home() {
                                 index={item.index}
                                 name={item.name}
                                 urlImg={item.sprites.front_default}
-                                species={item.species.name} // Display types
+                                species={item.species.name}
+                                containerStyle={{}}
+                                onPress={() => openModal(item)}
                             />
                         </View>
                     )}
                 />
             </ScrollView>
             <Footer />
+            <PokemonDetails
+                isVisible={isModalVisible}
+                onClose={closeModal}
+                pokemon={selectedPokemon}
+            />
         </View>
     );
 }
