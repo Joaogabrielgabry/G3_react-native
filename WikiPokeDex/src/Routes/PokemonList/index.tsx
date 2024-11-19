@@ -1,4 +1,3 @@
-
 import { api } from "../../Api/Api";
 import { AxiosResponse } from "axios";
 import { PokemonListProps } from "../../Components/Pokemon";
@@ -23,22 +22,36 @@ export async function getPokemonDetails(url: string): Promise<PokemonDetails> {
 }
 
 
-// Pegar todos os pokemons com paginação
 export async function getPokemonList(): Promise<PokemonListProps[]> {
     let pokemonList: { name: string; url: string }[] = [];
-    let nextUrl: string | null = '/pokemon/'; 
-
+    let nextUrl: string | null = '/pokemon/';
+    
+    // Recolher todas as URLs de Pokémon nas páginas
     while (nextUrl) {
         const response: AxiosResponse<{ results: { name: string; url: string }[], next: string | null }> = await api.get(nextUrl);
         pokemonList = pokemonList.concat(response.data.results);
         nextUrl = response.data.next;
     }
 
-    const detailedPokemonList = await Promise.all(
-        pokemonList.map((pokemon) => getPokemonDetails(pokemon.url))
-    );
+    
+    const MAX_CONCURRENCY = 10; 
 
-    return detailedPokemonList.map((pokemon) => ({
+    const pokemonDetails: PokemonDetails[] = [];
+    const promises: Promise<void>[] = [];
+
+
+    // Enfileira as requisições
+    for (let i = 0; i < pokemonList.length; i += MAX_CONCURRENCY) {
+        // Limita as requisições simultâneas
+        const batch = pokemonList.slice(i, i + MAX_CONCURRENCY).map((pokemon) => 
+            getPokemonDetails(pokemon.url).then((details) => pokemonDetails.push(details))
+        );
+        promises.push(Promise.all(batch).then(() => {}));
+    }
+
+    await Promise.all(promises);
+
+    return pokemonDetails.map((pokemon) => ({
         index: String(pokemon.id),
         name: pokemon.name,
         sprites: {
