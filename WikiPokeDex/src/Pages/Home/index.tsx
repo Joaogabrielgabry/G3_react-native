@@ -7,11 +7,15 @@ import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
 import { PokemonListProps } from '../../Components/PokemonForm';
 import { getPokemonList } from '../../Api/PokemonList';
+import PokemonApi from "../../Api/Abilities/index";
 
 export function Home() {
     const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonListProps | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [pokemonAbilities, setPokemonAbilities] = useState<
+        Array<{ name: string; effect: string; shortEffect: string }>
+    >([]);
 
     useEffect(() => {
         async function fetchPokemonList() {
@@ -25,8 +29,15 @@ export function Home() {
         fetchPokemonList();
     }, []);
 
-    const openModal = (pokemon: PokemonListProps) => {
+    const openModal = async (pokemon: PokemonListProps) => {
         setSelectedPokemon(pokemon);
+        try {
+            const api = new PokemonApi();
+            const abilities = await api.getPokemonAbilities(pokemon.name);
+            setPokemonAbilities(abilities);
+        } catch (error) {
+            console.error("Erro ao carregar habilidades do Pokémon:", error);
+        }
         setIsModalVisible(true);
     };
 
@@ -42,7 +53,7 @@ export function Home() {
                 <FlatList
                     numColumns={2}
                     data={pokemonList.filter(Boolean)}
-                    keyExtractor={(item) => item.index}
+                    keyExtractor={(item) => String(item.index)}
                     renderItem={({ item }) => (
                         <View style={HomeStyles.PrincipalContentCard}>
                             <Card
@@ -60,7 +71,10 @@ export function Home() {
                 isVisible={isModalVisible}
                 onClose={closeModal}
                 pokemon={selectedPokemon}
+                abilities={pokemonAbilities}
             />
+
+
         </View>
     );
 }
