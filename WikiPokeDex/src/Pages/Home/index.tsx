@@ -3,7 +3,6 @@ import { View, ScrollView, FlatList } from 'react-native';
 import { HomeStyles } from './Home';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
-import { Footer } from '../../Components/Footer';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
 import { PokemonListProps } from '../../Components/PokemonForm';
@@ -62,7 +61,6 @@ export function Home() {
                 onClose={closeModal}
                 pokemon={selectedPokemon}
             />
-            <Footer />
         </View>
     );
 }

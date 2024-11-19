@@ -3,7 +3,6 @@ import { View, Text, ScrollView, FlatList, TouchableOpacity } from 'react-native
 import { CategoriesStyle } from './Categories';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
-import { Footer } from '../../Components/Footer';
 import { getPokemonSpecies } from '../../Routes/PokemonEscpeciesList/index';
 
 interface PokemonSpeciesProps {
@@ -11,7 +10,7 @@ interface PokemonSpeciesProps {
     url: string;
 }
 
-export function Infos() {
+export function PokemonCategories() {
     const [speciesList, setSpeciesList] = useState<PokemonSpeciesProps[]>([]);
 
     useEffect(() => {
@@ -41,7 +40,6 @@ export function Infos() {
                     )}
                 />
             </ScrollView>
-            <Footer />
         </View>
     );
 }
