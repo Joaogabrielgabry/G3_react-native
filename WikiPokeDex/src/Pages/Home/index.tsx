@@ -39,11 +39,7 @@ export function Home() {
     return (
         <View style={GlobalCss.body}>
             <Header />
-            <ScrollView
-                style={GlobalCss.PrincipalContent}
-                horizontal={false}
-                showsVerticalScrollIndicator={false}
-            >
+            <View style={GlobalCss.PrincipalContent}>
                 <FlatList
                     style= { {width: '100%'} }
                     numColumns={2}
@@ -61,13 +57,13 @@ export function Home() {
                         </View>
                     )}
                 />
-            </ScrollView>
-            <Footer />
+            </View>
             <PokemonDetails
                 isVisible={isModalVisible}
                 onClose={closeModal}
                 pokemon={selectedPokemon}
             />
+            <Footer />
         </View>
     );
 }

@@ -6,7 +6,8 @@ export const HomeStyles = StyleSheet.create({
         flexWrap: 'wrap',
         width: '100%',
         backgroundColor: '#f2b807',
-        padding: 5,
+        marginTop: 0,
+        padding: 0,
         flex: 1,
     },
 
