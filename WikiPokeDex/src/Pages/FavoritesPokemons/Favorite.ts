@@ -13,5 +13,41 @@ export const FavoriteStyle = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         gap: 15,
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+       color: '#000',
+      textAlign: 'center',
+      marginVertical: 10,
+    },
+    card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    marginBottom: 10,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 3,
+    },
+    image: {
+    width: 80,
+    height: 80,
+    marginRight: 10,
+    },
+    name: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000',
+    },
+    type: {
+    fontSize: 14,
+    color: '#666',
+    },
+    emptyText: {
+    fontSize: 16,
+    color: '#888',
+    textAlign: 'center',
+    marginTop: 20,
     }
 });
