@@ -1,7 +1,7 @@
 
-import { api } from "../Api/Api";
+import { api } from "../../Api/Api";
 import { AxiosResponse } from "axios";
-import { PokemonListProps } from "../Components/Pokemon";
+import { PokemonListProps } from "../../Components/Pokemon";
 
 interface PokemonDetails {
     id: number;
@@ -22,6 +22,7 @@ export async function getPokemonDetails(url: string): Promise<PokemonDetails> {
     return response.data;
 }
 
+//Pegar todos os pokemons
 export async function getPokemonList(): Promise<PokemonListProps[]> {
     const response = await api.get<{ results: { name: string; url: string }[] }>('/pokemon/');
     const pokemonList = response.data.results;
