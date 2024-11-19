@@ -41,7 +41,6 @@ export function Home() {
             <Header />
             <View style={GlobalCss.PrincipalContent}>
                 <FlatList
-                    style= { {width: '100%'} }
                     numColumns={2}
                     data={pokemonList.filter(Boolean)}
                     keyExtractor={(item) => item.index}

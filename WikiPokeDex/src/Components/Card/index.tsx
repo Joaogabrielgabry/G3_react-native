@@ -10,7 +10,7 @@ interface CardProps {
     onPress?: () => void;
 }
 
-export function Card({  name, urlImg, species, onPress }: CardProps) {
+export function Card({ name, urlImg, species, onPress }: CardProps) {
     return (
         <TouchableOpacity
             style={CardStyles.cardContainer}

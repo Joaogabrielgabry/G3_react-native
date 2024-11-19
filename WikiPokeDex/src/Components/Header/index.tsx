@@ -6,7 +6,7 @@ import  pokemon  from '../../../assets/pokemon.png';
 export function Header() {
     return (
         <View style={HeaderStyles.header}>
-            <Image style={{width: '100%', height:100}} source={pokemon}/>
+            <Image style={{width: 150, height:150}} source={pokemon}/>
         </View>
     );
 }
