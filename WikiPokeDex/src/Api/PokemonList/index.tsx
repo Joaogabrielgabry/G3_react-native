@@ -1,4 +1,4 @@
-import { api } from "../../Api/Api";
+import { api } from "../Api";
 import { AxiosResponse } from "axios";
 import { PokemonListProps } from "../../Components/PokemonForm";
 

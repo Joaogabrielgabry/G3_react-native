@@ -1,4 +1,4 @@
-import { api } from '../../Api/Api';
+import { api } from '../Api';
 
 interface PokemonSpeciesProps {
     name: string;
