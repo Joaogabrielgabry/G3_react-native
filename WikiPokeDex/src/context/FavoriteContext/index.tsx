@@ -1,13 +1,8 @@
-<<<<<<< Updated upstream
 
-import React, { createContext, useContext, useState } from "react";
+
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { PokemonListProps } from '../../Interfaces/PokemonForm';
-
-=======
-import React, { createContext, useState, useContext, useEffect } from "react";
-import { PokemonListProps } from '../../Components/PokemonForm';
 import AsyncStorage from '@react-native-async-storage/async-storage';
->>>>>>> Stashed changes
 
 interface FavoriteProviderProps {
     children: React.ReactNode

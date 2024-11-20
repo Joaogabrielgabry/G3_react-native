@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal, View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { DetailsStyle } from "./Details";
 import Pokemon from "../../../assets/pokemon.png";
+import { FavoriteContext } from "../../context/FavoriteContext";
 
 interface PokemonDetailsProps {
     isVisible: boolean;
@@ -14,9 +15,13 @@ interface PokemonDetailsProps {
     abilities: Array<{ name: string; effect: string; shortEffect: string }>;
 }
 
+
 export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: PokemonDetailsProps) {
     if (!pokemon) return null;
-
+    const { addFavorite } = useContext(FavoriteContext);
+    function handleFavorite() {
+        addFavorite(pokemon);
+    }
     return (
         <Modal
             animationType="slide"
@@ -59,6 +64,10 @@ export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: Pokem
                 <TouchableOpacity style={DetailsStyle.closeButton} onPress={onClose}>
                     <Text style={DetailsStyle.closeButtonText}>Fechar</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={DetailsStyle.favoriteButton} onPress={handleFavorite}>
+                    <Text style={DetailsStyle.favoriteButtonText}>Adicionar aos Favoritos</Text>
+                </TouchableOpacity>
+
             </View>
         </Modal>
     );
