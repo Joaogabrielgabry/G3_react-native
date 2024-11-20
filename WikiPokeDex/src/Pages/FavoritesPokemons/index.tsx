@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ScrollView } from 'react-native';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
-import { MyTabs } from '../../Routes/MyTabs';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { api } from '../../Api/Api';
+import { Button } from '../../Components/ButtonForm';
+import { NavigationProps } from '../../Routes/NavegationPage';
+import { useNavigation } from '@react-navigation/native';
 
 
 interface Pokemon {
@@ -37,9 +40,23 @@ export function Favorite() {
     getFavorites(); 
   }, []); 
 
+  const navigation = useNavigation<NavigationProps>();
+
+  const handleHome = () => {
+      navigation.navigate('Mytabs');
+  }
+
   return (
     <View style={GlobalCss.body}>
-      <Header />
+     <Header
+            formUp={
+                <Button
+                form={<MaterialCommunityIcons name="home-import-outline" size={30} color="black" />}
+                title=''
+                handleOnChange={() => handleHome()}
+            />
+            }
+            />
       <ScrollView style={GlobalCss.PrincipalContent}>
         <Text style={styles.title}>Seus Pokémon Favoritos</Text>
 
