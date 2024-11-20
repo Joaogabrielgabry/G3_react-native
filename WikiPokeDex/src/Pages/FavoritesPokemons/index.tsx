@@ -3,11 +3,11 @@ import { View, FlatList } from 'react-native';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
-import { PokemonListProps } from '../../Components/PokemonForm';
+import { PokemonListProps } from '../../Interfaces/PokemonForm';
 import { FavoriteStyle } from './Favorite';
 import { getPokemonList } from '../../Api/PokemonList';
 import PokemonApi from '../../Api/Abilities';
-import { useFavoriteContext } from '../../context/FavoriteContext';
+import { useFavoriteContext } from '../../Context/FavoriteContext';
 
 export const FavoritesPokemons = () => {
   const { pokemonList, setPokemonList } = useFavoriteContext();

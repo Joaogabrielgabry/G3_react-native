@@ -25,7 +25,7 @@ export const AuthContext = createContext<AuthContextProvider>({
     setIsLogged: () => { }
 });
 
-export const Auth = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [register, setRegister] = useState<RegisterFormProps[]>([]);
     const [login, setLogin] = useState<LoginFormProps[]>([]);
     const [isLogged, setIsLogged] = useState(false);
