@@ -4,7 +4,7 @@ import { GlobalCss } from '../../Global/GlobalCss';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
 import { FavoriteStyle } from './Favorite';
-import { FavoriteContext } from '../../context/FavoriteContext';
+import { FavoriteContext } from '../../Context/FavoriteContext';
 
 export const FavoritesPokemons = () => {
   const { pokemonList } = useContext(FavoriteContext);
