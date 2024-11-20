@@ -3,14 +3,14 @@ import { View, FlatList } from 'react-native';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
-import { PokemonListProps } from '../../Interfaces/PokemonForm';
+import { PokemonListProps } from '../../Components/PokemonForm';
 import { FavoriteStyle } from './Favorite';
 import { getPokemonList } from '../../Api/PokemonList';
 import PokemonApi from '../../Api/Abilities';
-import { useFavoriteContext } from '../../Context/FavoriteContext';
+import { FavoriteContext } from '../../context/FavoriteContext';
 
 export const FavoritesPokemons = () => {
-  const { pokemonList, setPokemonList } = useFavoriteContext();
+  const { pokemonList } = useContext(FavoriteContext)();
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonListProps | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [pokemonAbilities, setPokemonAbilities] = useState<
@@ -21,13 +21,13 @@ export const FavoritesPokemons = () => {
     async function fetchPokemonList() {
         try {
             const detailedPokemonList = await getPokemonList();
-            setPokemonList(detailedPokemonList);
+            pokemonList(detailedPokemonList);
         } catch (error) {
             console.error("Erro ao carregar a lista de Pokémons:", error);
         }
     }
     fetchPokemonList();
-}, [setPokemonList]);
+}, [pokemonList]);
 
   const openModal = async (pokemon: PokemonListProps) => {
     setSelectedPokemon(pokemon);
