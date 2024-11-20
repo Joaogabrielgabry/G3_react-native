@@ -55,6 +55,18 @@ export const DetailsStyle = StyleSheet.create({
         textAlign: "center",
         fontSize: 16,
     },
+    favoriteButton: {
+        backgroundColor: '#FFD700',
+        padding: 10,
+        borderRadius: 5,
+        margin: 10,
+    },
+    favoriteButtonText: {
+        fontSize: 16,
+        color: '#000',
+        textAlign: 'center',
+    },
+
     abilitiesSection: {
         marginTop: 10,
         padding: 15,

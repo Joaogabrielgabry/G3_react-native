@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Modal, View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { DetailsStyle } from "./Details";
 import Pokemon from "../../../assets/pokemon.png";
-import { FavoriteContext } from "../../context/FavoriteContext";
+import { FavoriteContext } from "../../Context/FavoriteContext";
 
 interface PokemonDetailsProps {
     isVisible: boolean;
