@@ -23,6 +23,7 @@ export function Home() {
         Array<{ name: string; effect: string; shortEffect: string }>
     >([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
         async function fetchPokemonList() {
@@ -38,6 +39,10 @@ export function Home() {
         }
         fetchPokemonList();
     }, []);
+
+    const filteredPokemonList = pokemonList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const openModal = async (pokemon: PokemonListProps) => {
         setSelectedPokemon(pokemon);
@@ -73,7 +78,7 @@ export function Home() {
                         handleOnChange={() => handleFavorite()}
                     />
                 }
-                search={<SearchBar />}
+                search={<SearchBar onChangeText={(text) => setSearchTerm(text)} />}
             />
             <View style={GlobalCss.PrincipalContent}>
                 {isLoading ? (
@@ -84,7 +89,7 @@ export function Home() {
                 ) : (
                     <FlatList
                         numColumns={2}
-                        data={pokemonList.filter(Boolean)}
+                        data={filteredPokemonList}
                         keyExtractor={(item) => String(item.index)}
                         renderItem={({ item }) => (
                             <View style={HomeStyles.PrincipalContentCard}>
@@ -98,6 +103,7 @@ export function Home() {
                             </View>
                         )}
                     />
+
                 )}
             </View>
             <PokemonDetails
@@ -107,4 +113,5 @@ export function Home() {
                 abilities={pokemonAbilities}
             />
         </View>
-    );}
+    );
+}
