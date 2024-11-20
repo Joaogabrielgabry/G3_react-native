@@ -7,6 +7,11 @@ import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
 import { PokemonListProps } from '../../Components/PokemonForm';
 import { getPokemonList } from '../../Api/PokemonList';
+import { Button } from '../../Components/ButtonForm';
+import { NavigationProps } from '../../Routes/NavegationPage';
+import { useNavigation } from '@react-navigation/native';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { SearchBar } from '../../Components/SearchBar';
 
 export function Home() {
     const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
@@ -35,9 +40,27 @@ export function Home() {
         setSelectedPokemon(null);
     };
 
+    const navigation = useNavigation<NavigationProps>();
+
+    const handleFavorite = () => {
+        navigation.navigate('Favorite');
+    }
+
+
     return (
         <View style={GlobalCss.body}>
-            <Header />
+            <Header
+            formUp={
+                <Button
+                form={<AntDesign name="star" size={30} color="black" />}
+                title=''
+                handleOnChange={() => handleFavorite()}
+            />
+            }
+            search={
+                <SearchBar/>
+            }
+            />
             <View style={GlobalCss.PrincipalContent}>
                 <FlatList
                     numColumns={2}
