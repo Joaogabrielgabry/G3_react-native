@@ -9,7 +9,6 @@ import { NavigationProps } from '../../Routes/NavegationPage';
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { SearchBar } from '../../Components/SearchBar';
-import PokemonApi from '../../Api/Abilities';
 
 interface PokemonTypeProps {
     name: string;
