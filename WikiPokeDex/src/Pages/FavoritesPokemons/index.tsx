@@ -6,12 +6,21 @@ import { MyTabs } from '../../Routes/MyTabs';
 import { api } from '../../Api/Api';
 
 
+interface Pokemon {
+  index: string; 
+  name: string;
+  sprites: {
+    front_default: string;
+  };
+  species: {
+    name: string;
+  };
+}
+
 export function Favorite() {
-  
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState<Pokemon[]>([]); 
   const [loading, setLoading] = useState(true); 
 
-  
   useEffect(() => {
     const getFavorites = async () => {
       try {
@@ -39,7 +48,7 @@ export function Favorite() {
         ) : (
           <FlatList
             data={favorites}
-            keyExtractor={(item) => item.index}
+            keyExtractor={(item) => item.index} 
             renderItem={({ item }) => (
               <View style={styles.card}>
                 <Image source={{ uri: item.sprites.front_default }} style={styles.image} />
