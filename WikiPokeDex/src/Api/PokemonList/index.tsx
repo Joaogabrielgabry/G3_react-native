@@ -1,6 +1,6 @@
 import { api } from "../Api";
 import { AxiosResponse } from "axios";
-import { PokemonListProps } from "../../Components/PokemonForm";
+import { PokemonListProps } from "../../Interfaces/PokemonForm";
 
 interface PokemonDetails {
     id: number;
@@ -26,7 +26,6 @@ export async function getPokemonList(): Promise<PokemonListProps[]> {
     let pokemonList: { name: string; url: string }[] = [];
     let nextUrl: string | null = '/pokemon/';
 
-    // Continuar fazendo chamadas até não haver mais dados para carregar
     while (nextUrl) {
         const response: AxiosResponse<{ results: { name: string; url: string }[]; next: string | null }> = await api.get(nextUrl);
         pokemonList = pokemonList.concat(response.data.results);

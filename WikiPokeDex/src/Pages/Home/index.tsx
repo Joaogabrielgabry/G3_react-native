@@ -5,13 +5,23 @@ import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
-import { PokemonListProps } from '../../Components/PokemonForm';
+import { PokemonListProps } from '../../Interfaces/PokemonForm';
 import { getPokemonList } from '../../Api/PokemonList';
+import { Button } from '../../Components/ButtonForm';
+import { NavigationProps } from '../../Routes/NavegationPage';
+import { useNavigation } from '@react-navigation/native';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { SearchBar } from '../../Components/SearchBar';
+import PokemonApi from '../../Api/Abilities';
+
 
 export function Home() {
     const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonListProps | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [pokemonAbilities, setPokemonAbilities] = useState<
+        Array<{ name: string; effect: string; shortEffect: string }>
+    >([]);
 
     useEffect(() => {
         async function fetchPokemonList() {
@@ -25,8 +35,15 @@ export function Home() {
         fetchPokemonList();
     }, []);
 
-    const openModal = (pokemon: PokemonListProps) => {
+    const openModal = async (pokemon: PokemonListProps) => {
         setSelectedPokemon(pokemon);
+        try {
+            const api = new PokemonApi();
+            const abilities = await api.getPokemonAbilities(pokemon.name);
+            setPokemonAbilities(abilities);
+        } catch (error) {
+            console.error("Erro ao carregar habilidades do Pokémon:", error);
+        }
         setIsModalVisible(true);
     };
 
@@ -35,14 +52,32 @@ export function Home() {
         setSelectedPokemon(null);
     };
 
+    const navigation = useNavigation<NavigationProps>();
+
+    const handleFavorite = () => {
+        navigation.navigate('Favorite');
+    }
+
+
     return (
         <View style={GlobalCss.body}>
-            <Header />
+            <Header
+            formUp={
+                <Button
+                form={<AntDesign name="star" size={30} color="black" />}
+                title=''
+                handleOnChange={() => handleFavorite()}
+            />
+            }
+            search={
+                <SearchBar/>
+            }
+            />
             <View style={GlobalCss.PrincipalContent}>
                 <FlatList
                     numColumns={2}
                     data={pokemonList.filter(Boolean)}
-                    keyExtractor={(item) => item.index}
+                    keyExtractor={(item) => String(item.index)}
                     renderItem={({ item }) => (
                         <View style={HomeStyles.PrincipalContentCard}>
                             <Card
@@ -60,7 +95,10 @@ export function Home() {
                 isVisible={isModalVisible}
                 onClose={closeModal}
                 pokemon={selectedPokemon}
+                abilities={pokemonAbilities}
             />
+
+
         </View>
     );
 }
