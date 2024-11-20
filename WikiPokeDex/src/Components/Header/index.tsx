@@ -3,6 +3,9 @@ import { View, Image } from 'react-native';
 import { HeaderStyles } from './Header';
 import pokemon from '../../../assets/pokemon.png';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Button } from '../ButtonForm';
+import { NavigationProps } from '../../Routes/NavegationPage';
+import { useNavigation } from '@react-navigation/native';
 
 interface HeaderProps {
     formUp?: JSX.Element;
@@ -10,10 +13,20 @@ interface HeaderProps {
 }
 export function Header( props : HeaderProps) {
     const { formUp, search } = props;
+    const navigation = useNavigation<NavigationProps>();
+    const handleLogout = () => {
+        navigation.navigate('Login');
+        console.log(handleLogout, 'handleLogout');
+    }
+    
     return (
         <View style={HeaderStyles.header}>
             <View style={HeaderStyles.topNav}>
-                <MaterialIcons name="logout" size={30} color="black" />
+                <Button
+                form={<MaterialIcons name="logout" size={30} color="black" />}
+                title=''
+                handleOnChange={() => handleLogout()}
+                />
                 <Image style={{ width: 150, height: 150 }} source={pokemon} />
                 {formUp}
             </View>
