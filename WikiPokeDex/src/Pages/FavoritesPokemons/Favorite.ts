@@ -49,5 +49,13 @@ export const FavoriteStyle = StyleSheet.create({
     color: '#888',
     textAlign: 'center',
     marginTop: 20,
+    },
+    PrincipalContentCard:{
+        flexDirection: 'row',
+        justifyContent:'space-around',
+        width: 200,
+        height: 200,
+        flexWrap: 'wrap',
+        padding: 10,
     }
 });

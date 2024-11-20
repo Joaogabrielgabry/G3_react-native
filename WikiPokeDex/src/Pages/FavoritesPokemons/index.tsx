@@ -1,127 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useContext, useState } from 'react';
+import { View, FlatList } from 'react-native';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { api } from '../../Api/Api';
-import { Button } from '../../Components/ButtonForm';
-import { NavigationProps } from '../../Routes/NavegationPage';
-import { useNavigation } from '@react-navigation/native';
+import { Card } from '../../Components/Card';
+import { PokemonDetails } from '../../Components/PokemonDetails';
+import { PokemonListProps } from '../../Components/PokemonForm';
+import { FavoriteContext } from '../../context/FavoriteContext';
+import { FavoriteStyle } from './Favorite';
+import { getPokemonList } from '../../Api/PokemonList';
+import PokemonApi from '../../Api/Abilities';
 
 
-interface Pokemon {
-  index: string; 
-  name: string;
-  sprites: {
-    front_default: string;
-  };
-  species: {
-    name: string;
-  };
-}
-
-export function Favorite() {
-  const [favorites, setFavorites] = useState<Pokemon[]>([]); 
-  const [loading, setLoading] = useState(true); 
-
-  useEffect(() => {
-    const getFavorites = async () => {
+export const FavoritesPokemons = () => {
+    const [pokemonList, setPokemonList] = useContext(FavoriteContext);
+    const [selectedPokemon, setSelectedPokemon] = useContext<PokemonListProps | null>(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [pokemonAbilities, setPokemonAbilities] = useState<
+        Array<{ name: string; effect: string; shortEffect: string }>
+    >([]);
+  useEffect (()=>{
+    async function fetchPokemonList() {
       try {
-        setLoading(true); 
-        const response = await api.get('/pokemons/favorites'); 
-        setFavorites(response.data); 
+        const detailedPokemonList = await getPokemonList()
+        setPokemonList(detailedPokemonList);
+
       } catch (error) {
-        console.error('Erro ao buscar os favoritos:', error);
-      } finally {
-        setLoading(false); 
+        console.error(error)
       }
-    };
+      
+    }
+    fetchPokemonList()
+  },[])
+  const openModal = async (pokemon: PokemonListProps) => {
+    setSelectedPokemon(pokemon);
+    try {
+        const api = new PokemonApi();
+        const abilities = await api.getPokemonAbilities(pokemon.name);
+        setPokemonAbilities(abilities);
+    } catch (error) {
+        console.error("Erro ao carregar habilidades do Pokémon:", error);
+    }
+    setIsModalVisible(true);
+};
 
-    getFavorites(); 
-  }, []); 
+const closeModal = () => {
+    setIsModalVisible(false);
+    setSelectedPokemon(null);
+};
 
-  const navigation = useNavigation<NavigationProps>();
-
-  const handleHome = () => {
-      navigation.navigate('Mytabs');
-  }
 
   return (
-    <View style={GlobalCss.body}>
-     <Header
-            formUp={
-                <Button
-                form={<MaterialCommunityIcons name="home-import-outline" size={30} color="black" />}
-                title=''
-                handleOnChange={() => handleHome()}
+    <View style={GlobalCss.PrincipalContent}>
+                <FlatList
+                    numColumns={2}
+                    data={pokemonList.filter(Boolean)}
+                    keyExtractor={(item) => String(item.index)}
+                    renderItem={({ item }) => (
+                        <View style={FavoriteStyle.PrincipalContentCard}>
+                            <Card
+                                index={item.index}
+                                name={item.name}
+                                urlImg={item.sprites.front_default}
+                                species={item.species.name}
+                                onPress={() => openModal(item)}
+                            />
+                        </View>
+                    )}
+                />
+            </View>
+            <PokemonDetails
+                isVisible={isModalVisible}
+                onClose={closeModal}
+                pokemon={selectedPokemon}
+                abilities={pokemonAbilities}
             />
-            }
-            />
-      <ScrollView style={GlobalCss.PrincipalContent}>
-        <Text style={styles.title}>Seus Pokémon Favoritos</Text>
-
-        {loading ? (
-          <Text style={styles.loadingText}>Carregando...</Text>
-        ) : (
-          <FlatList
-            data={favorites}
-            keyExtractor={(item) => item.index} 
-            renderItem={({ item }) => (
-              <View style={styles.card}>
-                <Image source={{ uri: item.sprites.front_default }} style={styles.image} />
-                <View>
-                  <Text style={styles.name}>{item.name}</Text>
-                  <Text style={styles.type}>Tipos: {item.species.name}</Text>
-                </View>
-              </View>
-            )}
-            ListEmptyComponent={<Text style={styles.emptyText}>Nenhum Pokémon favorito encontrado.</Text>}
-          />
-        )}
-      </ScrollView>
-    </View>
-  );
+  )
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  card: {
-    flexDirection: 'row',
-    marginBottom: 16,
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: '#ccc',
-    alignItems: 'center',
-  },
-  image: {
-    width: 80,
-    height: 80,
-    marginRight: 16,
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  type: {
-    fontSize: 14,
-    color: '#666',
-  },
-  emptyText: {
-    fontSize: 16,
-    color: '#999',
-    textAlign: 'center',
-    marginTop: 20,
-  },
-  loadingText: {
-    fontSize: 16,
-    color: '#999',
-    textAlign: 'center',
-    marginTop: 20,
-  },
-});
 

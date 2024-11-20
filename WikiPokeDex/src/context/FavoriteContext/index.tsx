@@ -18,4 +18,5 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
             {children}
         </FavoriteContext.Provider>
     )
+  
 }
