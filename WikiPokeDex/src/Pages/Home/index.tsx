@@ -5,7 +5,7 @@ import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
-import { PokemonListProps } from '../../Components/PokemonForm';
+import { PokemonListProps } from '../../Interfaces/PokemonForm';
 import { getPokemonList } from '../../Api/PokemonList';
 import { Button } from '../../Components/ButtonForm';
 import { NavigationProps } from '../../Routes/NavegationPage';

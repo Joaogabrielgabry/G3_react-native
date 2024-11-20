@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 import React, { createContext, useState, useContext } from "react";
 import { PokemonListProps } from '../../Components/PokemonForm';
+=======
+import React, { createContext, useState } from "react";
+import { PokemonListProps } from '../../Interfaces/PokemonForm';
+>>>>>>> Stashed changes
 
 interface FavoriteProviderProps {
     children: React.ReactNode
