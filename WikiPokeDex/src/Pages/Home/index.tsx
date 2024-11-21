@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { HomeStyles } from './Home';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
@@ -22,18 +22,27 @@ export function Home() {
     const [pokemonAbilities, setPokemonAbilities] = useState<
         Array<{ name: string; effect: string; shortEffect: string }>
     >([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
         async function fetchPokemonList() {
+            setIsLoading(true);
             try {
                 const detailedPokemonList = await getPokemonList();
                 setPokemonList(detailedPokemonList);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setIsLoading(false);
             }
         }
         fetchPokemonList();
     }, []);
+
+    const filteredPokemonList = pokemonList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const openModal = async (pokemon: PokemonListProps) => {
         setSelectedPokemon(pokemon);
@@ -62,34 +71,40 @@ export function Home() {
     return (
         <View style={GlobalCss.body}>
             <Header
-            formUp={
-                <Button
-                form={<AntDesign name="star" size={30} color="black" />}
-                title=''
-                handleOnChange={() => handleFavorite()}
-            />
-            }
-            search={
-                <SearchBar/>
-            }
+                formUp={
+                    <Button
+                        form={<AntDesign name="star" size={30} color="black" />}
+                        title=""
+                        handleOnChange={() => handleFavorite()}
+                    />
+                }
+                search={<SearchBar onChangeText={(text) => setSearchTerm(text)} />}
             />
             <View style={GlobalCss.PrincipalContent}>
-                <FlatList
-                    numColumns={2}
-                    data={pokemonList.filter(Boolean)}
-                    keyExtractor={(item) => String(item.index)}
-                    renderItem={({ item }) => (
-                        <View style={HomeStyles.PrincipalContentCard}>
-                            <Card
-                                index={item.index}
-                                name={item.name}
-                                urlImg={item.sprites.front_default}
-                                species={item.species.name}
-                                onPress={() => openModal(item)}
-                            />
-                        </View>
-                    )}
-                />
+                {isLoading ? (
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <ActivityIndicator size="large" color="#0000ff" />
+                        <Text>Carregando Pokémons...</Text>
+                    </View>
+                ) : (
+                    <FlatList
+                        numColumns={2}
+                        data={filteredPokemonList}
+                        keyExtractor={(item) => String(item.index)}
+                        renderItem={({ item }) => (
+                            <View style={HomeStyles.PrincipalContentCard}>
+                                <Card
+                                    index={item.index}
+                                    name={item.name}
+                                    urlImg={item.sprites.front_default}
+                                    species={item.species.name}
+                                    onPress={() => openModal(item)}
+                                />
+                            </View>
+                        )}
+                    />
+
+                )}
             </View>
             <PokemonDetails
                 isVisible={isModalVisible}
@@ -97,8 +112,6 @@ export function Home() {
                 pokemon={selectedPokemon}
                 abilities={pokemonAbilities}
             />
-
-
         </View>
     );
 }

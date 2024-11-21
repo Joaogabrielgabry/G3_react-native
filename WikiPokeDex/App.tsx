@@ -1,7 +1,9 @@
-import React from "react";
-import { Routes } from "./src/Routes";
-import { FavoriteProvider } from "../WikiPokeDex/src/Context/FavoriteContext/index";
-import { AuthProvider } from "../WikiPokeDex/src/Context/AuthContext/index";
+import React from 'react';
+import {Routes} from './src/Routes';
+import { AuthProvider } from './src/context/AuthContext';
+import { FavoriteProvider } from './src/context/FavoriteContext';
+
+
 
 export default function App() {
   return <AuthProvider>
@@ -9,5 +11,4 @@ export default function App() {
         <Routes />
       </FavoriteProvider>
     </AuthProvider>
-  
 }

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-interface AbilityDetails {
+export interface AbilityDetails {
     name: string;
     effect: string;
     shortEffect: string;

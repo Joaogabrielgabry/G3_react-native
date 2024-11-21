@@ -8,8 +8,6 @@ interface AuthProviderProps {
 }
 
 export interface AuthContextProvider {
-    register: RegisterFormProps[]
-    setRegister: React.Dispatch<React.SetStateAction<RegisterFormProps[]>>
     login: LoginFormProps[]
     setLogin: React.Dispatch<React.SetStateAction<LoginFormProps[]>>
     isLogged: boolean
@@ -17,8 +15,6 @@ export interface AuthContextProvider {
 }
 
 export const AuthContext = createContext<AuthContextProvider>({
-    register: [],
-    setRegister: () => { },
     login: [],
     setLogin: () => { } ,
     isLogged:false,
@@ -26,18 +22,15 @@ export const AuthContext = createContext<AuthContextProvider>({
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-    const [register, setRegister] = useState<RegisterFormProps[]>([]);
     const [login, setLogin] = useState<LoginFormProps[]>([]);
     const [isLogged, setIsLogged] = useState(false);
     return (
         <AuthContext.Provider value={{
-            register,
-            setRegister,
             login,
             setLogin,
             isLogged,
             setIsLogged,
-         }}>
+        }}>
             {children}
         </AuthContext.Provider>
     )

@@ -12,15 +12,32 @@ export const DetailsStyle = StyleSheet.create({
         width: "90%",
         backgroundColor: "#ffffff",
         borderRadius: 20,
-        padding: 20,
+        padding: 15,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
         alignItems: "center",
-        alignSelf: "center",
+        justifyContent: "center",
     },
+    modalScroll: {
+        width: "100%",
+    },
+
+    topNav: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 20,
+    },
+    bottomNav: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginTop: 20,
+    },
+
     pokemonImage: {
         width: 200,
         height: 200,
@@ -42,34 +59,10 @@ export const DetailsStyle = StyleSheet.create({
         textAlign: "center",
         color: "#555",
     },
-    closeButton: {
-        backgroundColor: "#e74c3c",
-        padding: 12,
-        borderRadius: 10,
-        alignSelf: "center",
-        marginTop: 20,
-    },
-    closeButtonText: {
-        color: "#fff",
-        fontWeight: "bold",
-        textAlign: "center",
-        fontSize: 16,
-    },
-    favoriteButton: {
-        backgroundColor: '#FFD700',
-        padding: 10,
-        borderRadius: 5,
-        margin: 10,
-    },
-    favoriteButtonText: {
-        fontSize: 16,
-        color: '#000',
-        textAlign: 'center',
-    },
 
     abilitiesSection: {
-        marginTop: 10,
-        padding: 15,
+        marginTop: 5,
+        padding: 10,
         backgroundColor: "#f8f9fa",
         borderRadius: 15,
         width: "100%",
@@ -83,14 +76,9 @@ export const DetailsStyle = StyleSheet.create({
         color: "#444",
         textAlign: "left",
     },
-    abilityText: {
-        fontSize: 14,
-        color: "#555",
-        marginVertical: 5,
-    },
     abilityContainer: {
         marginVertical: 10,
-        padding: 10,
+        padding: 5,
         borderWidth: 1,
         borderColor: "#ddd",
         borderRadius: 10,
@@ -101,8 +89,20 @@ export const DetailsStyle = StyleSheet.create({
         shadowRadius: 3,
         elevation: 3,
     },
+    abilityHeader: {
+        padding: 10,
+        backgroundColor: "#f0f0f0",
+        borderRadius: 5,
+        marginVertical: 5,
+    },
+    abilityDetails: {
+        padding: 10,
+        backgroundColor: "#e8e8e8",
+        borderRadius: 5,
+        marginTop: 5,
+    },
     abilityName: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "bold",
         marginBottom: 5,
         color: "#333",
@@ -112,13 +112,45 @@ export const DetailsStyle = StyleSheet.create({
         color: "#555",
         lineHeight: 18,
     },
-    topNav: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        marginBottom: 20,
+    abilityShortEffect: {
+        fontSize: 12,
+        marginTop: 2,
+        fontStyle: "italic",
+        color: "#666",
     },
-    modalScroll: {
+    abilityText: {
+        fontSize: 14,
+        color: "#555",
+        marginVertical: 5,
+    },
+
+    closeButton: {
+        backgroundColor: "#e74c3c",
+        padding: 12,
+        borderRadius: 10,
+        alignSelf: "center",
+    },
+    closeButtonText: {
+        color: "#fff",
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 16,
+    },
+    favoriteButton: {
+        backgroundColor: "#FFD700",
+        padding: 12,
+        borderRadius: 10,
+        alignSelf: "center",
+        marginLeft: 20,
+    },
+    favoriteButtonText: {
+        color: "#333",
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 16,
+    },
+
+    pokemonInfo: {
         width: "100%",
     },
 });
