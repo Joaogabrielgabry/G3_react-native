@@ -12,13 +12,14 @@ import { Button } from '../../Components/ButtonForm';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import PokemonApi from '../../Api/Abilities';
+import { AbilityDetails } from '../../Api/Abilities'
 const api = new PokemonApi(); // Instancie a API
 
 export const FavoritesPokemons = () => {
   const { pokemonList } = useContext(FavoriteContext);
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonListProps | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [abilities, setAbilities] = useState([]);
+  const [abilities, setAbilities] = useState<AbilityDetails[]>([]);
 
   const openModal = async (pokemon: PokemonListProps) => {
     setSelectedPokemon(pokemon);
