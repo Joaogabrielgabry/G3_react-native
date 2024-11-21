@@ -100,7 +100,7 @@ export function Home() {
                     <FlatList
                         numColumns={2}
                         data={filteredPokemonList}
-                        keyExtractor={(item) => String(item.index)}
+                        keyExtractor={(item) => (String(item.index))}
                         renderItem={({ item }) => (
                             <View style={HomeStyles.PrincipalContentCard}>
                                 <Card

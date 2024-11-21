@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { LoginStyles } from './Login';
 import { GlobalCss } from '../../Global/GlobalCss';
@@ -11,11 +11,13 @@ import { AuthContext } from '../../Context/AuthContext';
 export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const {setLogin, setIsLogged} = useContext(AuthContext);
+    const { handleLogin } = useContext(AuthContext);
     const navigation = useNavigation<NavigationProps>();
 
-    const handleLogin = () => {
+    const navLogin = () => {
         navigation.navigate('Mytabs');
+        console.log("fui apertado aq");
+        
     };
 
     const handleRegister = () => {
@@ -23,21 +25,24 @@ export function Login() {
     };
 
     const checkUser = async () => {
-        if(username === '' || password === '') {
-            alert('Preencha todos os campos');
-        } else {
-        try {
-            const response = await getLogin({ user: username, password: password });
-            if (response) {
-                setLogin([response]);
-                setIsLogged(true);
-                handleLogin();
+            if(username === '' || password === '') {
+                alert('Preencha todos os campos');
+            } else {
+            try {
+                const response = await getLogin({ user: username, password: password });
+                if (response) {
+                    handleLogin(response);
+                    navLogin();
+                }
+            } catch (error) {
+                alert('Usuário não encontrado');
             }
-        } catch (error) {
-            alert('Usuário não encontrado');
         }
-    }
     };
+
+   
+
+
 
 
     return (

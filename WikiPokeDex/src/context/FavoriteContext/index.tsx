@@ -1,84 +1,62 @@
-import React, { createContext, useState, useEffect } from "react";
-import { PokemonListProps } from '../../Interfaces/PokemonForm';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { AuthContext } from "../AuthContext";
+import { PokemonListProps } from "../../Interfaces/PokemonForm";
+import { LoginFormProps } from "../../Interfaces/Login";
 
 interface FavoriteProviderProps {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
 export interface FavoriteContextProvider {
-    pokemonList: PokemonListProps[]
-    addFavorite: (pokemon: PokemonListProps) => void,
-    removeFavorite: (index: string) => void,
+    addFavorite: (pokemon: PokemonListProps) => void;
+    removeFavorite: (index: string) => void;
+    pokemonList: PokemonListProps[];
+    currentUser: LoginFormProps | null;
 }
 
 export const FavoriteContext = createContext<FavoriteContextProvider>({
-    addFavorite: () => { },
-    pokemonList: [{
-        index: '',
-        name: '',
-        sprites: { front_default: '' },
-        species: { name: '' },
-    }
-    ],
-    removeFavorite: () => { }
-})
+    addFavorite: () => {},
+    removeFavorite: () => {},
+    pokemonList: [],
+    currentUser: null,
+});
 
 export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
-    const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
+    const { login, favorites, saveFavorites, loadFavorites, isLogged } = useContext(AuthContext);
+    const [pokemonList, setPokemonList] = useState<PokemonListProps[]>(favorites);
 
     useEffect(() => {
-        getData()
-            .then(res => {
-                setPokemonList(res ? res : []);
-            })
-    }, []);
+        if (isLogged && login) {
+            loadFavorites();
+        }
+    }, [isLogged, login]);
 
     useEffect(() => {
-        storeData(pokemonList);
-    }, [pokemonList]);
-
-
-    const storeData = async (value: PokemonListProps[]) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem('list-pokemon', jsonValue);
-        } catch (e) {
-        }
-    };
-
-    const getData = async () => {
-        try {
-            const jsonValue = await AsyncStorage.getItem('list-pokemon');
-            return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch (e) {
-        }
-    };
+        setPokemonList(favorites);
+    }, [favorites]);
 
     const addFavorite = (pokemon: PokemonListProps) => {
-        const isAlreadyFavorite = pokemonList.some(
-            (favPokemon) => favPokemon.index === pokemon.index
-        );
-        if (isAlreadyFavorite) {
-            console.log("O Pokémon já está na lista de favoritos!");
-            return;
-        }
-        const updatedList = [...pokemonList, pokemon];
-        setPokemonList(updatedList);
-        storeData(updatedList);
+        const newFavorites = [...pokemonList, pokemon];
+        setPokemonList(newFavorites);
+        saveFavorites(newFavorites);
     };
-    function removeFavorite(index: string) {
-        let newPokemonList = pokemonList.filter(pokemon => {
-            return pokemon.index !== index
-        })
 
-        setPokemonList(newPokemonList);
-        storeData(newPokemonList);
-    }
+    const removeFavorite = (index: string) => {
+        const newFavorites = pokemonList.filter((fav) => fav.index !== index);
+        setPokemonList(newFavorites);
+        saveFavorites(newFavorites);
+    };
+
     return (
-        <FavoriteContext.Provider value={{ pokemonList, addFavorite, removeFavorite }}>
+        <FavoriteContext.Provider
+            value={{
+                addFavorite,
+                removeFavorite,
+                pokemonList,
+                currentUser: login,
+            }}
+        >
             {children}
         </FavoriteContext.Provider>
-    )
-
-}
+    );
+};

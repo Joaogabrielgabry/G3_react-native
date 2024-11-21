@@ -38,3 +38,12 @@ export async function getLogin(userData: Omit<LoginFormProps, "id">): Promise<Lo
     }
 }
 
+export async function getLoginById(id: string): Promise<LoginFormProps> {
+    try {
+        const response = await apiMock.get(`/userG3/${id}`);
+        return response.data;
+    } catch (error: any) {
+        throw new Error((error as Error).message || "Erro ao buscar usuário");
+    }
+}
+

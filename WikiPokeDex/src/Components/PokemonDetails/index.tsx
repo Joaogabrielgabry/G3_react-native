@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Modal, View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { DetailsStyle } from "./Details";
+import { FavoriteContext } from "../../context/FavoriteContext";
 import Pokemon from "../../../src/assets/pokemon.png";
-
-import { FavoriteContext } from "../../Context/FavoriteContext";
 
 interface PokemonDetailsProps {
     isVisible: boolean;
@@ -18,7 +17,7 @@ interface PokemonDetailsProps {
 }
 
 export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: PokemonDetailsProps) {
-    const { addFavorite, removeFavorite, pokemonList } = useContext(FavoriteContext);
+    const { addFavorite, removeFavorite, pokemonList, currentUser } = useContext(FavoriteContext);
     const [isFavorite, setIsFavorite] = useState(false);
     const [expandedAbilityIndex, setExpandedAbilityIndex] = useState<number | null>(null);
 
@@ -26,16 +25,17 @@ export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: Pokem
         setExpandedAbilityIndex((prevIndex) => (prevIndex === index ? null : index));
     };
 
-
     useEffect(() => {
-        if (pokemon) {
+        if (pokemon && currentUser !== null) {
             const favoriteExists = pokemonList.some(fav => fav.index === pokemon.index);
-            setIsFavorite(favoriteExists);
+            if (favoriteExists !== isFavorite) {
+                setIsFavorite(favoriteExists);
+            }
         }
-    }, [pokemon, pokemonList]);
+    }, [pokemon, pokemonList, currentUser]);
 
     const handleToggleFavorite = () => {
-        if (!pokemon) return;
+        if (!pokemon || currentUser === null) return;
 
         if (isFavorite) {
             removeFavorite(pokemon.index);
@@ -57,12 +57,12 @@ export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: Pokem
             <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={DetailsStyle.modalScroll}>
             <View style={DetailsStyle.modalBackground}>
                 <View style={DetailsStyle.topNav}>
-                    <Image style={{ width: 150, height: 150 }} source={Pokemon} />
+                    <Image style={{ width: 150, height: 150 }} source={{ uri: pokemon.sprites.front_default }} />
                 </View>
                 <View style={DetailsStyle.modalScroll}>
                     <View style={DetailsStyle.modalContent}>
                         <Image
-                            source={pokemon.sprites.front_default ? { uri: pokemon.sprites.front_default } : Pokemon}
+                            source={pokemon.sprites.front_default ? { uri: pokemon.sprites.front_default } : undefined}
                             style={DetailsStyle.pokemonImage}
                         />
                     </View>
@@ -70,7 +70,7 @@ export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: Pokem
                         <Text style={DetailsStyle.pokemonName}>{pokemon.name}</Text>
                         <Text style={DetailsStyle.pokemonSpecies}>Type: {pokemon.species.name}</Text>
                         <View style={DetailsStyle.abilitiesSection}>
-                            <Text style={DetailsStyle.sectionTitle}>Habilities:</Text>
+                            <Text style={DetailsStyle.sectionTitle}>Abilities:</Text>
                             {abilities.length > 0 ? (
                                 abilities.map((ability, index) => (
                                     <View key={index} style={DetailsStyle.abilityContainer}>
@@ -94,23 +94,22 @@ export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: Pokem
                                 ))
                             ) : (
                                 <Text style={DetailsStyle.abilityText}>
-                                    Nenhuma habilidade disponível.
+                                    No abilities available.
                                 </Text>
                             )}
                         </View>
-
                     </ScrollView>
                 </View>
                 <View style={DetailsStyle.bottomNav}>
                     <TouchableOpacity style={DetailsStyle.closeButton} onPress={onClose}>
-                        <Text style={DetailsStyle.closeButtonText}>Fechar</Text>
+                        <Text style={DetailsStyle.closeButtonText}>Close</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={DetailsStyle.favoriteButton}
                         onPress={handleToggleFavorite}
                     >
                         <Text style={DetailsStyle.favoriteButtonText}>
-                            {isFavorite ? "Remover dos Favoritos" : "Adicionar aos Favoritos"}
+                            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
                         </Text>
                     </TouchableOpacity>
                 </View>
