@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { SearchBar } from '../../Components/SearchBar';
 import { useCategory } from '../../Context/CategoryContext';
+import { NavigationProps } from '../../Routes/NavegationPage';
 
 interface PokemonTypeProps {
     name: string;
@@ -19,7 +20,7 @@ export function PokemonCategories() {
     const [types, setTypes] = useState<PokemonTypeProps[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const { setSelectedCategory } = useCategory();
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProps>();
 
     useEffect(() => {
         async function fetchTypes() {

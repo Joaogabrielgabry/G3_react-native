@@ -11,6 +11,7 @@ type RootStackParamList = {
     Mytabs: undefined;
     Login: undefined;
     Register: undefined;
+    Home: undefined;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
