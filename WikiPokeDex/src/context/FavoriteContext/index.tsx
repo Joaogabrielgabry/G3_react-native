@@ -44,7 +44,6 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
             const jsonValue = JSON.stringify(value);
             await AsyncStorage.setItem('list-pokemon', jsonValue);
         } catch (e) {
-        
         }
     };
 
@@ -53,7 +52,6 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
             const jsonValue = await AsyncStorage.getItem('list-pokemon');
             return jsonValue != null ? JSON.parse(jsonValue) : null;
         } catch (e) {
-    
         }
     };
 

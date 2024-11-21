@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import PokemonApi from '../../Api/Abilities';
 import { AbilityDetails } from '../../Api/Abilities'
-const api = new PokemonApi(); // Instancie a API
+const api = new PokemonApi();
 
 export const FavoritesPokemons = () => {
   const { pokemonList } = useContext(FavoriteContext);

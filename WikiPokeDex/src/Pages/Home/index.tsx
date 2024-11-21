@@ -13,17 +13,21 @@ import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { SearchBar } from '../../Components/SearchBar';
 import PokemonApi from '../../Api/Abilities';
-
+import { useCategory } from '../../Context/CategoryContext';
 
 export function Home() {
     const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
+    const [filteredPokemonList, setFilteredPokemonList] = useState<PokemonListProps[]>([]);
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonListProps | null>(null);
-    const [isModalVisible, setIsModalVisible] = useState(false);
     const [pokemonAbilities, setPokemonAbilities] = useState<
         Array<{ name: string; effect: string; shortEffect: string }>
     >([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState<string>('');
+
+    const { selectedCategory } = useCategory();
+    const navigation = useNavigation<NavigationProps>();
 
     useEffect(() => {
         async function fetchPokemonList() {
@@ -40,9 +44,18 @@ export function Home() {
         fetchPokemonList();
     }, []);
 
-    const filteredPokemonList = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    useEffect(() => {
+        const filteredList = pokemonList.filter((pokemon) => {
+            const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesCategory = selectedCategory
+                ? pokemon.species.name.toLowerCase().includes(selectedCategory.toLowerCase())
+                : true;
+
+            return matchesSearch && matchesCategory;
+        });
+
+        setFilteredPokemonList(filteredList);
+    }, [searchTerm, selectedCategory, pokemonList]);
 
     const openModal = async (pokemon: PokemonListProps) => {
         setSelectedPokemon(pokemon);
@@ -51,7 +64,7 @@ export function Home() {
             const abilities = await api.getPokemonAbilities(pokemon.name);
             setPokemonAbilities(abilities);
         } catch (error) {
-            console.error("Erro ao carregar habilidades do Pokémon:", error);
+            console.error('Erro ao carregar habilidades do Pokémon:', error);
         }
         setIsModalVisible(true);
     };
@@ -61,12 +74,9 @@ export function Home() {
         setSelectedPokemon(null);
     };
 
-    const navigation = useNavigation<NavigationProps>();
-
     const handleFavorite = () => {
         navigation.navigate('Favorite');
-    }
-
+    };
 
     return (
         <View style={GlobalCss.body}>
@@ -75,7 +85,7 @@ export function Home() {
                     <Button
                         form={<AntDesign name="star" size={30} color="black" />}
                         title=""
-                        handleOnChange={() => handleFavorite()}
+                        handleOnChange={handleFavorite}
                     />
                 }
                 search={<SearchBar onChangeText={(text) => setSearchTerm(text)} />}
@@ -103,7 +113,6 @@ export function Home() {
                             </View>
                         )}
                     />
-
                 )}
             </View>
             <PokemonDetails
