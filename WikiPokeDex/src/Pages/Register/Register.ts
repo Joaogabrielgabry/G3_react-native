@@ -46,4 +46,10 @@ export const RegisterStyles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
+    goBackIcon: {
+        position: 'absolute',
+        top: 20,
+        left: 15,
+        zIndex: 1,  // Garantir que o ícone fique acima dos outros elementos
+    },
 });
