@@ -4,6 +4,7 @@ import { LoginStyles } from './Login';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../../Routes/NavegationPage';
+import { Button } from '../../Components/ButtonForm';
 
 export function Login() {
     const [username, setUsername] = useState('');
@@ -41,7 +42,20 @@ export function Login() {
                 />
             </View>
 
-            <TouchableOpacity
+            <Button
+            styleContainer={LoginStyles.button}
+            title='Login'
+            textStyle={LoginStyles.buttonText}
+            handleOnChange={handleLogin}
+            />
+
+            <Button
+            title='Register'
+            textStyle={LoginStyles.registerText}
+            handleOnChange={handleRegister}
+            />
+
+            {/* <TouchableOpacity
                 style={LoginStyles.button}
                 onPress={handleLogin}
             >
@@ -50,7 +64,7 @@ export function Login() {
 
             <TouchableOpacity onPress={handleRegister}>
                 <Text style={LoginStyles.registerText}>Register</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     );
 }

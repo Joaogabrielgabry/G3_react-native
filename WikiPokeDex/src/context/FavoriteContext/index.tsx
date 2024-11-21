@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { PokemonListProps } from '../../Interfaces/PokemonForm';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -44,7 +44,7 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
             const jsonValue = JSON.stringify(value);
             await AsyncStorage.setItem('list-pokemon', jsonValue);
         } catch (e) {
-            // saving error
+        
         }
     };
 
@@ -53,7 +53,7 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
             const jsonValue = await AsyncStorage.getItem('list-pokemon');
             return jsonValue != null ? JSON.parse(jsonValue) : null;
         } catch (e) {
-            // error reading value
+    
         }
     };
 
