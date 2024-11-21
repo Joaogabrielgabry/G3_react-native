@@ -37,12 +37,12 @@ export function PokemonCategories() {
 
     const handleCategorySelect = (category: string) => {
         setSelectedCategory(category);
-        navigation.navigate('Home');
+        navigation.navigate('Mytabs');
     };
 
     const handleResetCategories = () => {
         setSelectedCategory(null); 
-        navigation.navigate('Home');
+        navigation.navigate('Mytabs');
     };
 
     const handleFavorite = () => {
