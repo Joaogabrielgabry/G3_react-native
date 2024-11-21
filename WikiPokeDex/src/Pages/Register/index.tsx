@@ -18,7 +18,6 @@ export function Register() {
     };
 
     const handleNewUser = async () => {
-        console.log('opa');
         if (email === '' || username === '' || password === '') {
             alert('Preencha todos os campos');
         } else {

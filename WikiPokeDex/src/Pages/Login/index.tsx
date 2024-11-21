@@ -19,7 +19,6 @@ export function Login() {
     };
 
     const handleRegister = () => {
-        console.log('opa, login');
         navigation.navigate('Register');
     };
 

@@ -32,7 +32,7 @@ export async function getLogin(userData: Omit<LoginFormProps, "id">): Promise<Lo
             throw new Error("Usuário não encontrado");
         }
 
-        return response.data[0];
+        return response.data;
     } catch (error: any) {
         throw new Error((error as Error).message || "Erro ao buscar usuários");
     }
