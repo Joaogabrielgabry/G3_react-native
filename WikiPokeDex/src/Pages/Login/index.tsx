@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
 import { LoginStyles } from './Login';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { useNavigation } from '@react-navigation/native';
@@ -19,6 +19,7 @@ export function Login() {
     };
 
     const handleRegister = () => {
+        console.log('opa, login');
         navigation.navigate('Register');
     };
 

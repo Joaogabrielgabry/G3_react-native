@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
+import { Button } from '../../Components/ButtonForm';
 import { RegisterStyles } from './Register';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../../Routes/NavegationPage';
+import { postRegisterUser } from '../../Api/Register';
 
 export function Register() {
     const [email, setEmail] = useState('');
@@ -15,6 +17,22 @@ export function Register() {
         navigation.navigate('Login');
     };
 
+    const handleNewUser = async () => {
+        console.log('opa');
+        if (email === '' || username === '' || password === '') {
+            alert('Preencha todos os campos');
+        } else {
+            try {
+                const response = await postRegisterUser({ email: email, user: username, password: password });
+                if (response) {
+                    alert('Usuário registrado com sucesso');
+                    handleRegister();
+                }
+            } catch (error) {
+                alert('Erro ao registrar usuário');
+            }
+        };
+    }
     return (
         <View style={[GlobalCss.body, RegisterStyles.container]}>
             <Text style={RegisterStyles.title}>Register</Text>
@@ -44,12 +62,13 @@ export function Register() {
                 />
             </View>
 
-            <TouchableOpacity
-                style={RegisterStyles.button}
-                onPress={handleRegister}
-            >
-                <Text style={RegisterStyles.buttonText}>Register</Text>
-            </TouchableOpacity>
+            <Button
+                title='Register'
+                handleOnChange={handleNewUser}
+                textStyle={RegisterStyles.buttonText}
+                styleContainer={RegisterStyles.button}
+            />
+
         </View>
     );
 }
