@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import { Button } from '../../Components/ButtonForm';
 import { getLogin} from '../../Api/Register';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../Context/AuthContext';
 
 export function Login() {
     const [username, setUsername] = useState('');

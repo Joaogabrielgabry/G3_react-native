@@ -5,27 +5,22 @@ import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
 import { getPokemonTypes } from '../../Api/PokemonCategoriesList';
 import { Button } from '../../Components/ButtonForm';
-import { NavigationProps } from '../../Routes/NavegationPage';
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { SearchBar } from '../../Components/SearchBar';
+import { useCategory } from '../../Context/CategoryContext';
+import { NavigationProps } from '../../Routes/NavegationPage';
 
 interface PokemonTypeProps {
     name: string;
     url: string;
 }
 
-interface PokemonListProps {
-    index: string;
-    name: string;
-    sprites: { front_default: string };
-    species: { name: string };
-}
-
 export function PokemonCategories() {
     const [types, setTypes] = useState<PokemonTypeProps[]>([]);
-    const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
-    const [selectedType, setSelectedType] = useState<string | null>(null);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const { setSelectedCategory } = useCategory();
+    const navigation = useNavigation<NavigationProps>();
 
     useEffect(() => {
         async function fetchTypes() {
@@ -40,52 +35,53 @@ export function PokemonCategories() {
         fetchTypes();
     }, []);
 
-    const navigation = useNavigation<NavigationProps>();
+    const handleCategorySelect = (category: string) => {
+        setSelectedCategory(category);
+        navigation.goBack()
+    };
+
+    const handleResetCategories = () => {
+        setSelectedCategory(null); 
+        navigation.goBack()
+    };
 
     const handleFavorite = () => {
         navigation.navigate('Favorite');
-    }
+    };
+
+    const filteredTypes = types.filter((type) =>
+        type.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <View style={GlobalCss.body}>
             <Header
-            formUp={
-                <Button
-                form={<AntDesign name="star" size={30} color="black" />}
-                title=''
-                handleOnChange={() => handleFavorite()}
-            />
-            }
-            search={
-                <SearchBar/>
-            }
+                formUp={
+                    <Button
+                        form={<AntDesign name="star" size={30} color="black" />}
+                        title=""
+                        handleOnChange={handleFavorite}
+                    />
+                }
+                search={<SearchBar onChangeText={(text) => setSearchTerm(text)} />}
             />
             <View style={GlobalCss.PrincipalContent}>
+                <Button
+                    title="Mostrar Todos os Pokémon"
+                    handleOnChange={handleResetCategories}
+                />
                 <FlatList
-                    data={types}
+                    data={filteredTypes}
                     keyExtractor={(item) => item.name}
                     renderItem={({ item }) => (
                         <TouchableOpacity
-                            style={[
-                                CategoriesStyle.speciesItem,
-                                item.name === selectedType && CategoriesStyle.selectedItem,
-                            ]}
+                            style={CategoriesStyle.speciesItem}
+                            onPress={() => handleCategorySelect(item.name)}
                         >
                             <Text style={CategoriesStyle.speciesText}>{item.name}</Text>
                         </TouchableOpacity>
                     )}
                 />
-                {selectedType && (
-                    <FlatList
-                        data={pokemonList}
-                        keyExtractor={(item) => item.index}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity style={CategoriesStyle.speciesItem}>
-                                <Text style={CategoriesStyle.speciesText}>{item.name}</Text>
-                            </TouchableOpacity>
-                        )}
-                    />
-                )}
             </View>
         </View>
     );

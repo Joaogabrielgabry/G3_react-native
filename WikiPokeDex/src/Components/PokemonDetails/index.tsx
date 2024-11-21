@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Modal, View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { DetailsStyle } from "./Details";
 import { FavoriteContext } from "../../context/FavoriteContext";
+import Pokemon from "../../../src/assets/pokemon.png";
 
 interface PokemonDetailsProps {
     isVisible: boolean;
@@ -53,6 +54,7 @@ export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: Pokem
             visible={isVisible}
             onRequestClose={onClose}
         >
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={DetailsStyle.modalScroll}>
             <View style={DetailsStyle.modalBackground}>
                 <View style={DetailsStyle.topNav}>
                     <Image style={{ width: 150, height: 150 }} source={{ uri: pokemon.sprites.front_default }} />
@@ -112,6 +114,7 @@ export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: Pokem
                     </TouchableOpacity>
                 </View>
             </View>
+            </ScrollView>
         </Modal>
     );
 }

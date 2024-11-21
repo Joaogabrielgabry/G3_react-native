@@ -1,14 +1,19 @@
 import React from 'react';
-import {Routes} from './src/Routes';
-import { AuthProvider } from './src/context/AuthContext';
-import { FavoriteProvider } from './src/context/FavoriteContext';
+import { Routes } from './src/Routes';
+import { AuthProvider } from './src/Context/AuthContext';
+import { FavoriteProvider } from './src/Context/FavoriteContext';
+import { CategoryProvider } from './src/Context/CategoryContext';
 
 
 
 export default function App() {
   return <AuthProvider>
-      <FavoriteProvider>
+
+    <FavoriteProvider>
+      <CategoryProvider>
         <Routes />
-      </FavoriteProvider>
-    </AuthProvider>
+      </CategoryProvider>
+    </FavoriteProvider>
+
+  </AuthProvider>
 }

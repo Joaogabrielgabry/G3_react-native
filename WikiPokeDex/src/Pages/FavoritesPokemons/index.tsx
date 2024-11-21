@@ -4,7 +4,7 @@ import { GlobalCss } from '../../Global/GlobalCss';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
 import { FavoriteStyle } from './Favorite';
-import { FavoriteContext } from '../../context/FavoriteContext';
+import { FavoriteContext } from '../../Context/FavoriteContext';
 import { PokemonListProps } from '../../Interfaces/PokemonForm';
 import { Header } from '../../Components/Header';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import PokemonApi from '../../Api/Abilities';
 import { AbilityDetails } from '../../Api/Abilities'
-const api = new PokemonApi(); // Instancie a API
+const api = new PokemonApi();
 
 export const FavoritesPokemons = () => {
   const { pokemonList } = useContext(FavoriteContext);

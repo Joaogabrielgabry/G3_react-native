@@ -6,8 +6,9 @@ export const DetailsStyle = StyleSheet.create({
         backgroundColor: "#f2b807",
         alignItems: "center",
         justifyContent: "center",
-        padding: 20,
-    },
+        paddingVertical: 20,
+
+      },
     modalContent: {
         width: "90%",
         backgroundColor: "#ffffff",
@@ -20,10 +21,12 @@ export const DetailsStyle = StyleSheet.create({
         elevation: 5,
         alignItems: "center",
         justifyContent: "center",
+        alignSelf: "center",
     },
     modalScroll: {
+        flex: 1,
         width: "100%",
-    },
+      },
 
     topNav: {
         flexDirection: "row",
@@ -151,6 +154,7 @@ export const DetailsStyle = StyleSheet.create({
     },
 
     pokemonInfo: {
-        width: "100%",
-    },
+        flexGrow: 1,
+        paddingBottom: 20,
+      },
 });
