@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const DetailsStyle = StyleSheet.create({
-    // Modal principal
     modalBackground: {
         flex: 1,
-        backgroundColor: "#f2b807", // Amarelo Pokémon
+        backgroundColor: "#f2b807",
         alignItems: "center",
         justifyContent: "center",
         padding: 20,
@@ -20,12 +19,12 @@ export const DetailsStyle = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
         alignItems: "center",
+        justifyContent: "center",
     },
     modalScroll: {
         width: "100%",
     },
 
-    // Navegação superior e inferior
     topNav: {
         flexDirection: "row",
         alignItems: "center",
@@ -39,7 +38,6 @@ export const DetailsStyle = StyleSheet.create({
         marginTop: 20,
     },
 
-    // Imagem e informações do Pokémon
     pokemonImage: {
         width: 200,
         height: 200,
@@ -52,21 +50,20 @@ export const DetailsStyle = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 5,
         textAlign: "center",
-        color: "#333", // Cinza escuro para contraste
+        color: "#333",
     },
     pokemonSpecies: {
         fontSize: 16,
         fontWeight: "500",
         marginBottom: 15,
         textAlign: "center",
-        color: "#555", // Cinza médio
+        color: "#555",
     },
 
-    // Seção de habilidades
     abilitiesSection: {
         marginTop: 5,
         padding: 10,
-        backgroundColor: "#f8f9fa", // Cinza claro
+        backgroundColor: "#f8f9fa",
         borderRadius: 15,
         width: "100%",
         borderWidth: 1,
@@ -94,7 +91,7 @@ export const DetailsStyle = StyleSheet.create({
     },
     abilityHeader: {
         padding: 10,
-        backgroundColor: "#f0f0f0", // Cinza neutro
+        backgroundColor: "#f0f0f0",
         borderRadius: 5,
         marginVertical: 5,
     },
@@ -119,7 +116,7 @@ export const DetailsStyle = StyleSheet.create({
         fontSize: 12,
         marginTop: 2,
         fontStyle: "italic",
-        color: "#666", // Cinza suave para descrição curta
+        color: "#666",
     },
     abilityText: {
         fontSize: 14,
@@ -127,9 +124,8 @@ export const DetailsStyle = StyleSheet.create({
         marginVertical: 5,
     },
 
-    // Botões
     closeButton: {
-        backgroundColor: "#e74c3c", // Vermelho para fechar
+        backgroundColor: "#e74c3c",
         padding: 12,
         borderRadius: 10,
         alignSelf: "center",
@@ -141,20 +137,19 @@ export const DetailsStyle = StyleSheet.create({
         fontSize: 16,
     },
     favoriteButton: {
-        backgroundColor: "#FFD700", // Amarelo ouro
+        backgroundColor: "#FFD700",
         padding: 12,
         borderRadius: 10,
         alignSelf: "center",
         marginLeft: 20,
     },
     favoriteButtonText: {
-        color: "#333", // Contraste com fundo amarelo
+        color: "#333",
         fontWeight: "bold",
         textAlign: "center",
         fontSize: 16,
     },
 
-    // Informações adicionais
     pokemonInfo: {
         width: "100%",
     },

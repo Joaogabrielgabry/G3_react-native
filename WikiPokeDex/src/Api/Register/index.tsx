@@ -19,7 +19,7 @@ export async function getLogin(userData: Omit<LoginFormProps, "id">): Promise<Lo
     const queryParams = new URLSearchParams();
 
     if(userData.user) {
-        queryParams.append("email", userData.user);
+        queryParams.append("user", userData.user);
     }
     if(userData.password) {
         queryParams.append("password", userData.password);
@@ -27,12 +27,12 @@ export async function getLogin(userData: Omit<LoginFormProps, "id">): Promise<Lo
 
     try {
         const response = await apiMock.get(`/userG3?${queryParams.toString()}`);
-
+        console.log(response.data);
         if (!response.data || response.data.length === 0) {
             throw new Error("Usuário não encontrado");
         }
 
-        return response.data;
+        return response.data[0];
     } catch (error: any) {
         throw new Error((error as Error).message || "Erro ao buscar usuários");
     }
