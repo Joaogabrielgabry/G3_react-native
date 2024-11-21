@@ -1,5 +1,5 @@
 export interface RegisterFormProps {
-    index: string;
+    id: number;
     email: string;
     user: string;
     password: string;

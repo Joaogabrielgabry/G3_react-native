@@ -1,5 +1,5 @@
 export interface LoginFormProps {
-    index: string;
-    email: string;
+    id: number;
+    user: string;
     password: string;
 }
