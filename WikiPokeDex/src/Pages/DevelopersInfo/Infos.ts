@@ -1,18 +1,19 @@
 import { StyleSheet } from "react-native";
-import ana from '../../assets/developers/ana.jpg';
-import bruna from '../../assets/developers/bruna.jpg';
-import gabriel from '../../assets/developers/gabriel.jpg';
-import geovane from '../../assets/developers/geovane.jpg';
-import gabry from '../../assets/developers/gabry.jpg';
-import leticia from '../../assets/developers/leticia.jpg';
+import Ana from '../../../assets/Ana.png';
+import bruna from '../../../assets/Ana.png';
+import gabriel from '../../../assets/bardasson.png';
+import geovane from '../../../assets/Ana.png';
+import gabry from '../../../assets/gabry.png';
+import leticia from '../../../assets/leticia.png';
+
 
 
 export const developers = [
   {
     name: 'Ana Matos',
-    photo: ana, 
+    photo: Ana, 
     github: 'https://github.com/username',
-    linkedin: 'https://linkedin.com/in/username',
+    linkedin: 'https://www.linkedin.com/in/ana-luiza-maciell/',
   },
   {
     name: 'Bruna Medeiros',
@@ -23,20 +24,20 @@ export const developers = [
   {
     name: 'Geovane Rosa',
     photo: geovane,
-    github: 'https://github.com/username',
+    github: 'https://github.com/geovanerosa',
     linkedin: 'https://linkedin.com/in/username',
   },
   {
     name: 'Gabriel Bardasson',
     photo: gabriel,
-    github: 'https://github.com/username',
-    linkedin: 'https://linkedin.com/in/username',
+    github: 'https://github.com/bardasson10',
+    linkedin: 'https://www.linkedin.com/in/gabriel-bardasson-49858b204/',
   },
   {
     name: 'Jõao Gabriel',
     photo: gabry,
-    github: 'https://github.com/username',
-    linkedin: 'https://linkedin.com/in/username',
+    github: 'https://github.com/Joaogabrielgabry',
+    linkedin: 'https://www.linkedin.com/in/joaogabrielgabry/',
   },
   {
     name: 'Leticia Peixoto',
@@ -81,3 +82,5 @@ export const InfoStyles = StyleSheet.create({
     height: 24,
   },
 });
+
+
