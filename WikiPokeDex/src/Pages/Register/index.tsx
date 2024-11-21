@@ -12,7 +12,6 @@ export function Register() {
     const navigation = useNavigation<NavigationProps>();
 
     const handleRegister = () => {
-        console.log({ email, username, password });
         navigation.navigate('Login');
     };
 

@@ -4,7 +4,7 @@ import { apiMock } from "../Api";
 
 
 
-export async function postRegisterUser(register: RegisterFormProps): Promise<RegisterFormProps> {
+export async function postRegisterUser(register: Omit<RegisterFormProps, "id">): Promise<RegisterFormProps> {
     try {
         const response = await apiMock.post('/userG3', register);
         return response.data;

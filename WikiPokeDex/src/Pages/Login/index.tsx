@@ -7,12 +7,11 @@ import { NavigationProps } from '../../Routes/NavegationPage';
 import { Button } from '../../Components/ButtonForm';
 import { getLogin} from '../../Api/Register';
 import { AuthContext } from '../../context/AuthContext';
-import { LoginFormProps } from '../../Interfaces/Login';
 
 export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { login, setLogin, setIsLogged } = useContext(AuthContext);
+    const {setLogin, setIsLogged} = useContext(AuthContext);
     const navigation = useNavigation<NavigationProps>();
 
     const handleLogin = () => {
@@ -36,7 +35,6 @@ export function Login() {
             }
         } catch (error) {
             alert('Usuário não encontrado');
-            console.error("Erro ao buscar usuário:", error);
         }
     }
     };
