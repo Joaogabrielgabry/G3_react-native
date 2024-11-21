@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { HeaderStyles } from './Header';
-import pokemon from '../../../assets/pokemon.png';
+import Pokemon from "../../../src/assets/pokemon.png";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Button } from '../ButtonForm';
 import { NavigationProps } from '../../Routes/NavegationPage';
@@ -18,7 +18,6 @@ export function Header( props : HeaderProps) {
         navigation.navigate('Login');
         console.log(handleLogout, 'handleLogout');
     }
-    
     return (
         <View style={HeaderStyles.header}>
             <View style={HeaderStyles.topNav}>
@@ -27,7 +26,7 @@ export function Header( props : HeaderProps) {
                 title=''
                 handleOnChange={() => handleLogout()}
                 />
-                <Image style={{ width: 150, height: 150 }} source={pokemon} />
+                <Image style={{ width: 150, height: 150 }} source={Pokemon} />
                 {formUp}
             </View>
             <View style={HeaderStyles.bottomNav}>
