@@ -22,7 +22,6 @@
 ### Pré-requisitos 🔧
 
 - Node.js
-- Expo CLI 
 - **Expo Go** no seu dispositivo móvel 📲
 
 ### Passos 🔄
