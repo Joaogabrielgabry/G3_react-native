@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { api } from '../Api';
 
 interface PokemonSpeciesProps {
@@ -12,7 +13,7 @@ export async function getPokemonSpecies(): Promise<PokemonSpeciesProps[]> {
         );
         return response.data.results;
     } catch (error) {
-        console.error('Erro ao buscar espécies de Pokémon:', error);
+        Alert.alert('Erro ao buscar espécies de Pokémon:', "error");
         return [];
     }
 }

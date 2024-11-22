@@ -19,8 +19,6 @@ export function Login() {
 
     const navLogin = () => {
         navigation.navigate('Mytabs');
-        console.log("fui apertado aq");
-
     };
 
     const handleRegister = () => {

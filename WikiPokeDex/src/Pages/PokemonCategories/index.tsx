@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { CategoriesStyle } from './Categories';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
@@ -29,7 +29,7 @@ export function PokemonCategories() {
                 const data = await getPokemonTypes();
                 setTypes(data);
             } catch (error) {
-                console.error('Erro ao buscar tipos:', error);
+                Alert.alert('Erro ao buscar tipos:', "error");
             }
         }
 

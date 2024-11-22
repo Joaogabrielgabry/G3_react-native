@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import { LoginFormProps } from "../../Interfaces/Login";
 import { RegisterFormProps } from "../../Interfaces/Register";
 import { apiMock } from "../Api";
@@ -9,7 +10,7 @@ export async function postRegisterUser(register: Omit<RegisterFormProps, "id">):
         const response = await apiMock.post('/userG3', register);
         return response.data;
     } catch (error: any) {
-        console.error("Erro ao registrar usuário:", error.message);
+        Alert.alert("Erro ao registrar usuário:", error.message);
         throw new Error("Erro ao registrar usuário. Verifique os dados e tente novamente.");
     }
 }
@@ -27,7 +28,6 @@ export async function getLogin(userData: Omit<LoginFormProps, "id">): Promise<Lo
 
     try {
         const response = await apiMock.get(`/userG3?${queryParams.toString()}`);
-        console.log(response.data);
         if (!response.data || response.data.length === 0) {
             throw new Error("Usuário não encontrado");
         }

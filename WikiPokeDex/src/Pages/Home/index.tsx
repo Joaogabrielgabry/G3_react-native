@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, ActivityIndicator, Text } from 'react-native';
+import { View, FlatList, ActivityIndicator, Text, Alert } from 'react-native';
 import { HomeStyles } from './Home';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
@@ -36,7 +36,7 @@ export function Home() {
                 const detailedPokemonList = await getPokemonList();
                 setPokemonList(detailedPokemonList);
             } catch (error) {
-                console.error(error);
+                Alert.alert('Erro ao buscar lista de Pokémons:', "error");
             } finally {
                 setIsLoading(false);
             }
@@ -64,7 +64,7 @@ export function Home() {
             const abilities = await api.getPokemonAbilities(pokemon.name);
             setPokemonAbilities(abilities);
         } catch (error) {
-            console.error('Erro ao carregar habilidades do Pokémon:', error);
+            Alert.alert('Erro ao carregar habilidades do Pokémon:', "error");
         }
         setIsModalVisible(true);
     };

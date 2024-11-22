@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Alert } from 'react-native';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
@@ -29,7 +29,7 @@ export const FavoritesPokemons = () => {
       const fetchedAbilities = await api.getPokemonAbilities(pokemon.name);
       setAbilities(fetchedAbilities);
     } catch (error) {
-      console.error("Erro ao buscar habilidades:", error);
+      Alert.alert("Erro ao buscar habilidades:", "error");
       setAbilities([]);
     }
   };

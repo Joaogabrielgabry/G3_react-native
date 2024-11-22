@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from "axios";
+import { Alert } from "react-native";
 
 export interface AbilityDetails {
     name: string;
@@ -30,7 +31,7 @@ class PokemonApi {
                 shortEffect: effectEntry?.short_effect || "Descrição curta não disponível.",
             };
         } catch (error) {
-            console.error(`Erro ao obter detalhes da habilidade ${idOrName}:`, error);
+            Alert.alert(`Erro ao obter detalhes da habilidade ${idOrName}:`, "error");
             throw new Error("Não foi possível obter os detalhes da habilidade.");
         }
     }
@@ -46,7 +47,7 @@ class PokemonApi {
 
             return Promise.all(abilityDetailsPromises);
         } catch (error) {
-            console.error(`Erro ao obter habilidades do Pokémon ${pokemonName}:`, error);
+            Alert.alert(`Erro ao obter habilidades do Pokémon ${pokemonName}:`, "error");
             throw new Error("Não foi possível obter as habilidades do Pokémon.");
         }
     }
