@@ -6,7 +6,7 @@ import { Button } from '../../Components/ButtonForm';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { developers } from './Infos'; 
+import { developers } from './Infos';
 import { Linking } from 'react-native';
 
 export function DevelopersInfos() {
