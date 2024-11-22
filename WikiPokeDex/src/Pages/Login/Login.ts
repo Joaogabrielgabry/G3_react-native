@@ -7,6 +7,13 @@ export const LoginStyles = StyleSheet.create({
         backgroundColor: '#003366',
         flex: 1,
     },
+    logoImage: {
+        position: 'absolute',
+        top: 30,
+        width: 200,
+        height: 200,
+        resizeMode: 'contain',
+    },
     box: {
         backgroundColor: '#f2b807',
         padding: 30,
@@ -51,5 +58,13 @@ export const LoginStyles = StyleSheet.create({
         marginTop: 20,
         textAlign: 'center',
         fontSize: 16,
+    },
+    bottomRightImage: {
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        width: 130,
+        height: 130,
+        resizeMode: 'contain',
     },
 });

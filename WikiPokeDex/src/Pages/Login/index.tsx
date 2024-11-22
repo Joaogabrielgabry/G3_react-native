@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, Image } from 'react-native';
 import { LoginStyles } from './Login';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,8 @@ import { NavigationProps } from '../../Routes/NavegationPage';
 import { Button } from '../../Components/ButtonForm';
 import { getLogin} from '../../Api/Register';
 import { AuthContext } from '../../Context/AuthContext';
+import PikachuIcon from '../../../assets/pikachu.png';
+import PokemonLogo from '../../../assets/pokemon.png';
 
 export function Login() {
     const [username, setUsername] = useState('');
@@ -17,7 +19,7 @@ export function Login() {
     const navLogin = () => {
         navigation.navigate('Mytabs');
         console.log("fui apertado aq");
-        
+
     };
 
     const handleRegister = () => {
@@ -39,14 +41,14 @@ export function Login() {
             }
         }
     };
-
-   
-
-
-
-
     return (
         <View style={[GlobalCss.body, LoginStyles.container]}>
+
+            <Image
+                source={PokemonLogo}
+                style={LoginStyles.logoImage}
+            />
+
             <Text style={LoginStyles.title}>Login</Text>
 
             <View style={LoginStyles.box}>
@@ -80,6 +82,11 @@ export function Login() {
                 title='Register'
                 textStyle={LoginStyles.registerText}
                 handleOnChange={handleRegister}
+            />
+
+            <Image
+                source={PikachuIcon}
+                style={LoginStyles.bottomRightImage}
             />
         </View>
     );

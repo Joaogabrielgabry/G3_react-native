@@ -25,7 +25,7 @@ export const developers = [
     name: 'Geovane Rosa',
     photo: geovane,
     github: 'https://github.com/geovanerosa',
-    linkedin: 'https://linkedin.com/in/username',
+    linkedin: 'https://www.linkedin.com/in/geovane-rosa-8779391b6/',
   },
   {
     name: 'Gabriel Bardasson',

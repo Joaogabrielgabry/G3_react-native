@@ -7,6 +7,13 @@ export const RegisterStyles = StyleSheet.create({
         backgroundColor: '#f2b807',
         flex: 1,
     },
+    logoImage: {
+        position: 'absolute',
+        top: 30,
+        width: 200,
+        height: 200,
+        resizeMode: 'contain',
+    },
     box: {
         backgroundColor: '#1E90FF',
         padding: 30,
@@ -50,6 +57,6 @@ export const RegisterStyles = StyleSheet.create({
         position: 'absolute',
         top: 20,
         left: 15,
-        zIndex: 1,  // Garantir que o ícone fique acima dos outros elementos
+        zIndex: 1,
     },
 });
