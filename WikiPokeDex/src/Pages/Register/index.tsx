@@ -41,7 +41,6 @@ export function Register() {
 
     return (
         <View style={[GlobalCss.body, RegisterStyles.container]}>
-            {/* Ícone de seta para voltar */}
             <TouchableOpacity onPress={handleGoBack} style={RegisterStyles.goBackIcon}>
                 <Ionicons name="arrow-back" size={30} color="#003366" />
             </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, FlatList, Text, ScrollView } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';

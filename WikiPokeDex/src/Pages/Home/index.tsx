@@ -10,7 +10,6 @@ import { getPokemonList } from '../../Api/PokemonList';
 import { Button } from '../../Components/ButtonForm';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import { useNavigation } from '@react-navigation/native';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import Entypo from '@expo/vector-icons/Entypo';
 import { SearchBar } from '../../Components/SearchBar';
 import PokemonApi from '../../Api/Abilities';

@@ -30,8 +30,6 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
             loadFavorites();
         }
     }, [isLogged, login]);
-    
-
     useEffect(() => {
         setPokemonList(favorites);
     }, [favorites]);
