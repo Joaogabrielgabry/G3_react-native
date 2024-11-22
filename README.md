@@ -60,7 +60,7 @@ Agradeço aos seguintes colaboradores que ajudaram a tornar o **WikiPokeDex** po
 - [Gabriel Bardasson](https://github.com/bardasson10) 
 - [Letícia Peixoto](https://github.com/leticiapzs)
 - [Geovane Rosa](https://github.com/geovanerosa)
-- [Ana Maciel](https://github.com/)
+- [Ana Maciel](https://github.com/AnaMattoss)
 - [Bruna Medeiros](https://github.com/brunacmedeiros)
 
 
