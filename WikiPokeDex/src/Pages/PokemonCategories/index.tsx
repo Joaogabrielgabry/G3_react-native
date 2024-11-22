@@ -8,7 +8,7 @@ import { Button } from '../../Components/ButtonForm';
 import { useNavigation } from '@react-navigation/native';
 import Entypo from '@expo/vector-icons/Entypo';
 import { SearchBar } from '../../Components/SearchBar';
-import { useCategory } from '../../Context/CategoryContext';
+import { useCategory } from '../../context/CategoryContext';
 import { NavigationProps } from '../../Routes/NavegationPage';
 
 interface PokemonTypeProps {
