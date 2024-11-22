@@ -26,10 +26,11 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
     const [pokemonList, setPokemonList] = useState<PokemonListProps[]>(favorites);
 
     useEffect(() => {
-        if (isLogged && login) {
+        if (isLogged && login && login.id) {
             loadFavorites();
         }
     }, [isLogged, login]);
+    
 
     useEffect(() => {
         setPokemonList(favorites);
