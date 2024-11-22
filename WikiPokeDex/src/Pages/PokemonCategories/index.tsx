@@ -11,6 +11,7 @@ import { SearchBar } from '../../Components/SearchBar';
 import { useCategory } from '../../context/CategoryContext';
 import { NavigationProps } from '../../Routes/NavegationPage';
 
+
 interface PokemonTypeProps {
     name: string;
     url: string;
@@ -65,21 +66,25 @@ export function PokemonCategories() {
                 }
                 search={<SearchBar onChangeText={(text) => setSearchTerm(text)} />}
             />
-            <View style={GlobalCss.PrincipalContent}>
+            <View style={CategoriesStyle.PrincipalContent}>
                 <Button
                     title="Mostrar Todos os Pokémon"
                     handleOnChange={handleResetCategories}
+                    styleContainer={CategoriesStyle.resetButton}
+                    textStyle={CategoriesStyle.resetButtonText}
                 />
                 <FlatList
+                style={{ width: '100%', flexGrow:1 }}
                     data={filteredTypes}
                     keyExtractor={(item) => item.name}
                     renderItem={({ item }) => (
-                        <TouchableOpacity
-                            style={CategoriesStyle.speciesItem}
-                            onPress={() => handleCategorySelect(item.name)}
-                        >
-                            <Text style={CategoriesStyle.speciesText}>{item.name}</Text>
-                        </TouchableOpacity>
+
+                        <Button
+                        title={item.name}
+                        handleOnChange={() => handleCategorySelect(item.name)}
+                        styleContainer={CategoriesStyle.speciesItem}
+                        textStyle={CategoriesStyle.speciesText}
+                        />
                     )}
                 />
             </View>

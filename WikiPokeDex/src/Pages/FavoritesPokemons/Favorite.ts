@@ -14,7 +14,7 @@ export const FavoriteStyle = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
-        flexDirection: 'row',
+        flexDirection: 'column',
         flexWrap: 'wrap',
         flexGrow: 2,
         overflow: 'visible',

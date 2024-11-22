@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import Ana from '../../../assets/Ana.png';
-import bruna from '../../../assets/Ana.png';
+import bruna from '../../../assets/bruna.png';
 import geovane from '../../../assets/geovane.png';
 import gabriel from '../../../assets/bardasson.png';
 import gabry from '../../../assets/gabry.png';
@@ -78,6 +78,12 @@ export const InfoStyles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
+  },
+  PrincipalContent: {
+    flex: 1,
+    gap: 16,
+    width: '100%',
+    padding: 16,
   },
 });
 

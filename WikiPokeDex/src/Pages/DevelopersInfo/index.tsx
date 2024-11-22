@@ -6,8 +6,7 @@ import { Button } from '../../Components/ButtonForm';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { developers } from './Infos';
+import { developers, InfoStyles } from './Infos';
 import { Linking } from 'react-native';
 
 export function DevelopersInfos() {
@@ -29,7 +28,7 @@ export function DevelopersInfos() {
         }
       />
 
-      <ScrollView style={GlobalCss.PrincipalContent}>
+      <ScrollView style={InfoStyles.PrincipalContent}>
         {developers.map((developer, index) => (
           <View key={index} style={styles.card}>
             <Image source={developer.photo} style={styles.profileImage} />
@@ -68,21 +67,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 16,
-    padding: 10,
+    padding: 15,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },
   profileImage: {
-    width: 50,
-    height: 50,
+    width: 80,
+    height: 80,
     borderRadius: 25,
     marginRight: 12,
   },
   name: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#000',
   },
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: 36,
+    height: 36,
   },
 });
