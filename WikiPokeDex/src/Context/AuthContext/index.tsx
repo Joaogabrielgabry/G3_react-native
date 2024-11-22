@@ -39,17 +39,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const handleLogin = async (user: LoginFormProps) => {
         try {
             console.log("Usuário logando:", user);
-            
             // Verifique se `user` é um array e, se sim, extraia o primeiro usuário.
             const currentUser = Array.isArray(user) ? user[0] : user;
-    
             // Salva o usuário no AsyncStorage e atualiza o estado local
             setLogin(currentUser);
             setIsLogged(true);
             await AsyncStorage.setItem("currentUser", JSON.stringify(currentUser));
-    
             console.log("Usuário salvo:", currentUser);
-    
             // Carrega os favoritos do usuário após o login
             await loadFavorites();
         } catch (error) {
@@ -127,45 +123,6 @@ const handleLogout = async () => {
             console.error("Tentativa de logout sem um usuário válido.");
             return;
         }
-<<<<<<< Updated upstream
-        try {
-            const key = `favorites_${login.id}`;
-            console.log(`Salvando favoritos na chave: ${key}`, newFavorites);
-            await AsyncStorage.setItem(key, JSON.stringify(newFavorites));
-            setFavorites(newFavorites);
-        } catch (error) {
-            console.error("Erro ao salvar favoritos:", error);
-        }
-    };
-
-    const handleLogin = async (user: LoginFormProps) => {
-        try {
-            console.log("Usuário logando:", user);
-            setLogin(user);
-            setIsLogged(true);
-            await AsyncStorage.setItem("currentUser", JSON.stringify(user));
-            console.log("Usuário salvo:", user);
-        } catch (error) {
-            console.error("Erro ao salvar usuário logado:", error);
-        }
-        setTimeout(() => {
-            loadFavorites();
-        }, 100);
-    };
-
-    const handleLogout = async () => {
-        try {
-            console.log("Logout iniciado");
-            await AsyncStorage.removeItem("currentUser");
-            setIsLogged(false);
-            setLogin(null);
-            setFavorites([]);
-            console.log("Logout concluído e favoritos limpos localmente");
-        } catch (error) {
-            console.error("Erro ao realizar logout:", error);
-        }
-    };
-=======
 
         console.log(`Logout iniciado para o usuário: ${login.id}`);
         
@@ -176,7 +133,6 @@ const handleLogout = async () => {
         setIsLogged(false);
         setLogin(null); // Limpa o login
         setFavorites([]); // Limpa os favoritos do estado local
->>>>>>> Stashed changes
 
         console.log("Logout concluído. Favoritos permanecem no AsyncStorage.");
     } catch (error) {
