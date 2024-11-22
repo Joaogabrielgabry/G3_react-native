@@ -4,7 +4,7 @@ import { GlobalCss } from '../../Global/GlobalCss';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
 import { FavoriteStyle } from './Favorite';
-import { FavoriteContext } from '../../Context/FavoriteContext';
+import { FavoriteContext } from '../../context/FavoriteContext';
 import { PokemonListProps } from '../../Interfaces/PokemonForm';
 import { Header } from '../../Components/Header';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -50,7 +50,7 @@ export const FavoritesPokemons = () => {
       <Header
         formUp={
           <Button
-            form={<MaterialCommunityIcons name="home-import-outline" size={28} color="black" />}
+            form={<MaterialCommunityIcons name="home-import-outline" size={30} color="black" />}
             title=""
             handleOnChange={() => handleHome()}
           />

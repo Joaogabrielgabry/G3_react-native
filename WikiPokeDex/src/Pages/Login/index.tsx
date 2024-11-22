@@ -6,9 +6,13 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import { Button } from '../../Components/ButtonForm';
 import { getLogin} from '../../Api/Register';
+<<<<<<< HEAD
 import { AuthContext } from '../../Context/AuthContext';
 import PikachuIcon from '../../../assets/pikachu.png';
 import PokemonLogo from '../../../assets/pokemon.png';
+=======
+import { AuthContext } from '../../context/AuthContext';
+>>>>>>> 7b56c740c1a5b6635d0f923bdbc8176cfb995fc6
 
 export function Login() {
     const [username, setUsername] = useState('');

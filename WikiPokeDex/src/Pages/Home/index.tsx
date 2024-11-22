@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { SearchBar } from '../../Components/SearchBar';
 import PokemonApi from '../../Api/Abilities';
-import { useCategory } from '../../Context/CategoryContext';
+import { useCategory } from '../../context/CategoryContext';
 
 export function Home() {
     const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
