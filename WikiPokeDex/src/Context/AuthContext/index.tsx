@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { LoginFormProps } from "../../Interfaces/Login";
 import { PokemonListProps } from "../../Interfaces/PokemonForm";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert } from "react-native";
 
 interface AuthProviderProps {
     children: React.ReactNode;
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             await AsyncStorage.setItem("currentUser", JSON.stringify(currentUser));
             await loadFavorites();
         } catch (error) {
-            console.error("Erro ao salvar usuário logado:", error);
+            Alert.alert("Erro ao realizar login:", "Erro ao salvar usuário logado no AsyncStorage.");
         }
     };
 
@@ -58,7 +59,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                     setIsLogged(true);
                 }
             } catch (error) {
-                console.error("Erro ao recuperar usuário:", error);
+                Alert.alert("Erro ao carregar usuário logado:", "Erro ao carregar usuário logado do AsyncStorage.");
             }
         };
         initializeAuth();
@@ -73,7 +74,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     const loadFavorites = async () => {
         if (!login || !login.id) {
-            console.error("Tentativa de carregar favoritos sem um usuário válido.");
             return;
         }
         try {
@@ -83,21 +83,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             if (storedFavorites) {
                 const parsedFavorites = JSON.parse(storedFavorites);
                 if (Array.isArray(parsedFavorites)) {
-                    console.log("Favoritos carregados:", parsedFavorites);
                     setFavorites(parsedFavorites);
                 }
             } else {
-                console.log("Nenhum favorito encontrado para este usuário.");
                 setFavorites([]);
             }
         } catch (error) {
-            console.error("Erro ao carregar favoritos:", error);
+            Alert.alert("Erro ao carregar favoritos:", "Erro ao carregar favoritos do usuário logado.");
         }
     };
 
     const saveFavorites = async (newFavorites: PokemonListProps[]) => {
     if (!login || !login.id) {
-        console.error("Tentativa de salvar favoritos sem um usuário logado.");
+        Alert.alert("Erro ao salvar favoritos:", "Usuário não logado.");
         return;
     }
 
@@ -105,7 +103,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         const key = `favorites_${login.id}`;
         await AsyncStorage.setItem(key, JSON.stringify(newFavorites));
     } catch (error) {
-        console.error("Erro ao salvar favoritos:", error);
+        Alert.alert("Erro ao salvar favoritos:", "Erro ao salvar favoritos do usuário logado.");
     }
 };
 
@@ -113,7 +111,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 const handleLogout = async () => {
     try {
         if (!login || !login.id) {
-            console.error("Tentativa de logout sem um usuário válido.");
+            Alert.alert("Erro ao realizar logout:", "Usuário não logado.");
             return;
         }
         await AsyncStorage.removeItem("currentUser");
@@ -121,9 +119,9 @@ const handleLogout = async () => {
         setLogin(null);
         setFavorites([]);
 
-        console.log("Logout concluído. Favoritos permanecem no AsyncStorage.");
+        Alert.alert("Logout realizado com sucesso!", "Usuário deslogado com sucesso.");
     } catch (error) {
-        console.error("Erro ao realizar logout:", error);
+        Alert.alert("Erro ao realizar logout:", "Erro ao remover usuário logado do AsyncStorage.");
     }
 };
     return (
