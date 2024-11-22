@@ -56,9 +56,7 @@ export const InfoStyles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 16,
     padding: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', // Substitua as propriedades de sombra aqui
     elevation: 3,
   },
   profileImage: {
@@ -82,5 +80,4 @@ export const InfoStyles = StyleSheet.create({
     height: 24,
   },
 });
-
 

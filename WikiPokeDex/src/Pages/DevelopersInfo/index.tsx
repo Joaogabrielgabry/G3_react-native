@@ -4,6 +4,7 @@ import { GlobalCss } from '../../Global/GlobalCss';
 import { Header } from '../../Components/Header';
 import { Button } from '../../Components/ButtonForm';
 import { NavigationProps } from '../../Routes/NavegationPage';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { developers } from './Infos'; 
@@ -12,8 +13,8 @@ import { Linking } from 'react-native';
 export function DevelopersInfos() {
   const navigation = useNavigation<NavigationProps>();
 
-  const handleFavorite = () => {
-    navigation.navigate('Favorite');
+  const handleHome= () => {
+    navigation.navigate('Mytabs');
   };
 
   return (
@@ -21,9 +22,9 @@ export function DevelopersInfos() {
       <Header
         formUp={
           <Button
-            form={<AntDesign name="star" size={30} color="black" />}
+            form={<MaterialCommunityIcons name="home-import-outline" size={30} color="black" />}
             title=""
-            handleOnChange={() => handleFavorite()}
+            handleOnChange={() => handleHome()}
           />
         }
       />

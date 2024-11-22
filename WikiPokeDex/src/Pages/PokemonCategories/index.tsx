@@ -6,7 +6,7 @@ import { Header } from '../../Components/Header';
 import { getPokemonTypes } from '../../Api/PokemonCategoriesList';
 import { Button } from '../../Components/ButtonForm';
 import { useNavigation } from '@react-navigation/native';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import Entypo from '@expo/vector-icons/Entypo';
 import { SearchBar } from '../../Components/SearchBar';
 import { useCategory } from '../../context/CategoryContext';
 import { NavigationProps } from '../../Routes/NavegationPage';
@@ -45,8 +45,8 @@ export function PokemonCategories() {
         navigation.goBack()
     };
 
-    const handleFavorite = () => {
-        navigation.navigate('Favorite');
+    const handleInfo = () => {
+        navigation.navigate('DevelopersInfos');
     };
 
     const filteredTypes = types.filter((type) =>
@@ -58,9 +58,9 @@ export function PokemonCategories() {
             <Header
                 formUp={
                     <Button
-                        form={<AntDesign name="star" size={30} color="black" />}
+                        form={<Entypo name="info-with-circle" size={30} color="black" />}
                         title=""
-                        handleOnChange={handleFavorite}
+                        handleOnChange={handleInfo}
                     />
                 }
                 search={<SearchBar onChangeText={(text) => setSearchTerm(text)} />}

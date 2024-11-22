@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text, ScrollView } from 'react-native';
 import { GlobalCss } from '../../Global/GlobalCss';
 import { Card } from '../../Components/Card';
 import { PokemonDetails } from '../../Components/PokemonDetails';
@@ -7,7 +7,7 @@ import { FavoriteStyle } from './Favorite';
 import { FavoriteContext } from '../../context/FavoriteContext';
 import { PokemonListProps } from '../../Interfaces/PokemonForm';
 import { Header } from '../../Components/Header';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import Entypo from '@expo/vector-icons/Entypo';
 import { Button } from '../../Components/ButtonForm';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../../Routes/NavegationPage';
@@ -41,8 +41,8 @@ export const FavoritesPokemons = () => {
   };
 
   const navigation = useNavigation<NavigationProps>();
-  const handleHome = () => {
-    navigation.navigate('Mytabs');
+  const handleInfo = () => {
+    navigation.navigate('DevelopersInfos');
   };
 
   return (
@@ -50,28 +50,31 @@ export const FavoritesPokemons = () => {
       <Header
         formUp={
           <Button
-            form={<MaterialCommunityIcons name="home-import-outline" size={30} color="black" />}
+            form={<Entypo name="info-with-circle" size={30} color="black" />}
             title=""
-            handleOnChange={() => handleHome()}
+            handleOnChange={handleInfo}
           />
         }
       />
-      <FlatList
-        numColumns={2}
-        data={pokemonList}
-        keyExtractor={(item) => String(item.index)}
-        renderItem={({ item }) => (
-          <View style={FavoriteStyle.PrincipalContentCard}>
-            <Card
-              index={item.index}
-              name={item.name}
-              urlImg={item.sprites.front_default}
-              species={item.species.name}
-              onPress={() => openModal(item)}
-            />
-          </View>
-        )}
-      />
+      <View style={GlobalCss.PrincipalContent}>
+        <FlatList
+          contentContainerStyle={FavoriteStyle.PrincipalContent}
+          numColumns={2}
+          data={pokemonList}
+          keyExtractor={(item) => String(item.index)}
+          renderItem={({ item }) => (
+            <View style={FavoriteStyle.PrincipalContentCard}>
+              <Card
+                index={item.index}
+                name={item.name}
+                urlImg={item.sprites.front_default}
+                species={item.species.name}
+                onPress={() => openModal(item)}
+              />
+            </View>
+          )}
+        />
+      </View>
       {selectedPokemon && (
         <PokemonDetails
           isVisible={isModalVisible}

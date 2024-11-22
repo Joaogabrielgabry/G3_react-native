@@ -6,7 +6,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Button } from '../ButtonForm';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../../Context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 interface HeaderProps {
     formUp?: JSX.Element;

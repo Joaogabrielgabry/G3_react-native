@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Modal, View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { DetailsStyle } from "./Details";
-import { FavoriteContext } from "../../Context/FavoriteContext";
+import { FavoriteContext } from "../../context/FavoriteContext";
 import Pokemon from "../../../src/assets/pokemon.png";
 
 interface PokemonDetailsProps {

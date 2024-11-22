@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from '../../Pages/Home';
 import { PokemonCategories } from '../../Pages/PokemonCategories';
 import { DevelopersInfos } from '../../Pages/DevelopersInfo';
+import { FavoritesPokemons } from '../../Pages/FavoritesPokemons';
 
 const Tab = createBottomTabNavigator();
 
@@ -75,15 +76,15 @@ export function MyTabs() {
     <Tab.Screen
         options={{
             tabBarIcon: ({ color, focused }: { color: string; focused: boolean }) => (
-                <Feather name="info" size={45} color={color} style={{
+                <Feather name="star" size={45} color={color} style={{
                     backgroundColor: focused ? '#1C2B59' : 'transparent', // Cor de fundo quando ativo
                     borderRadius: focused ? 10 : 0, // Aplica border-radius quando ativo
                     padding: focused ? 15 : 0, // Ajuste do padding quando ativo
                 }} />
             ),
         }}
-        name="info"
-        component={DevelopersInfos}
+        name="favorites"
+        component={FavoritesPokemons}
     />
 </Tab.Navigator>
     );

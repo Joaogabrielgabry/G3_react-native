@@ -1,18 +1,17 @@
 
 import React from 'react';
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
-import { FavoritesPokemons } from '../../Pages//FavoritesPokemons'
 import { MyTabs } from '../MyTabs';
 import { Login } from '../../Pages/Login';
 import { Register } from '../../Pages/Register';
-import { Home } from '../../Pages/Home';
+import { DevelopersInfos } from '../../Pages/DevelopersInfo';
 
 type RootStackParamList = {
     Favorite: undefined;
     Mytabs: undefined;
     Login: undefined;
     Register: undefined;
-    Home: undefined;
+    DevelopersInfos: undefined;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -29,8 +28,7 @@ export function NavPages() {
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Mytabs" component={MyTabs} />
-            <Stack.Screen name="Favorite" component={FavoritesPokemons} />
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="DevelopersInfos" component={DevelopersInfos} />
         </Stack.Navigator>
     );
 }

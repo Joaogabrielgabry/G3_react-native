@@ -11,6 +11,7 @@ import { Button } from '../../Components/ButtonForm';
 import { NavigationProps } from '../../Routes/NavegationPage';
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import Entypo from '@expo/vector-icons/Entypo';
 import { SearchBar } from '../../Components/SearchBar';
 import PokemonApi from '../../Api/Abilities';
 import { useCategory } from '../../context/CategoryContext';
@@ -74,8 +75,8 @@ export function Home() {
         setSelectedPokemon(null);
     };
 
-    const handleFavorite = () => {
-        navigation.navigate('Favorite');
+    const handleInfo = () => {
+        navigation.navigate('DevelopersInfos');
     };
 
     return (
@@ -83,9 +84,9 @@ export function Home() {
             <Header
                 formUp={
                     <Button
-                        form={<AntDesign name="star" size={30} color="black" />}
+                        form={<Entypo name="info-with-circle" size={30} color="black" />}
                         title=""
-                        handleOnChange={handleFavorite}
+                        handleOnChange={handleInfo}
                     />
                 }
                 search={<SearchBar onChangeText={(text) => setSearchTerm(text)} />}

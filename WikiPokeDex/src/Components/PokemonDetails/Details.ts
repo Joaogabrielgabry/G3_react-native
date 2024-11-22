@@ -7,17 +7,14 @@ export const DetailsStyle = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         paddingVertical: 20,
-
-      },
+        width: "100%",
+    },
     modalContent: {
         width: "90%",
         backgroundColor: "#ffffff",
         borderRadius: 20,
         padding: 15,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
+        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)', // Substitua as propriedades de sombra aqui
         elevation: 5,
         alignItems: "center",
         justifyContent: "center",
@@ -26,8 +23,7 @@ export const DetailsStyle = StyleSheet.create({
     modalScroll: {
         flex: 1,
         width: "100%",
-      },
-
+    },
     topNav: {
         flexDirection: "row",
         alignItems: "center",
@@ -40,7 +36,6 @@ export const DetailsStyle = StyleSheet.create({
         justifyContent: "space-between",
         marginTop: 20,
     },
-
     pokemonImage: {
         width: 200,
         height: 200,
@@ -62,7 +57,6 @@ export const DetailsStyle = StyleSheet.create({
         textAlign: "center",
         color: "#555",
     },
-
     abilitiesSection: {
         marginTop: 5,
         padding: 10,
@@ -86,10 +80,7 @@ export const DetailsStyle = StyleSheet.create({
         borderColor: "#ddd",
         borderRadius: 10,
         backgroundColor: "#ffffff",
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.15,
-        shadowRadius: 3,
+        boxShadow: '0px 2px 3px rgba(0, 0, 0, 0.15)', // Substitua as propriedades de sombra aqui
         elevation: 3,
     },
     abilityHeader: {
@@ -126,7 +117,6 @@ export const DetailsStyle = StyleSheet.create({
         color: "#555",
         marginVertical: 5,
     },
-
     closeButton: {
         backgroundColor: "#e74c3c",
         padding: 12,
@@ -152,9 +142,8 @@ export const DetailsStyle = StyleSheet.create({
         textAlign: "center",
         fontSize: 16,
     },
-
     pokemonInfo: {
         flexGrow: 1,
         paddingBottom: 20,
-      },
+    },
 });
