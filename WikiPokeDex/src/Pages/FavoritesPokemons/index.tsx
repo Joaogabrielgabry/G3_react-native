@@ -50,7 +50,7 @@ export const FavoritesPokemons = () => {
       <Header
         formUp={
           <Button
-            form={<MaterialCommunityIcons name="home-import-outline" size={28} color="black" />}
+            form={<MaterialCommunityIcons name="home-import-outline" size={30} color="black" />}
             title=""
             handleOnChange={() => handleHome()}
           />
