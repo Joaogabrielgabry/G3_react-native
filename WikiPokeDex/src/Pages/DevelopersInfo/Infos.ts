@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 import Ana from '../../../assets/Ana.png';
 import bruna from '../../../assets/Ana.png';
+import geovane from '../../../assets/geovane.png';
 import gabriel from '../../../assets/bardasson.png';
-import geovane from '../../../assets/Ana.png';
 import gabry from '../../../assets/gabry.png';
 import leticia from '../../../assets/leticia.png';
 
@@ -11,7 +11,7 @@ import leticia from '../../../assets/leticia.png';
 export const developers = [
   {
     name: 'Ana Matos',
-    photo: Ana, 
+    photo: Ana,
     github: 'https://github.com/username',
     linkedin: 'https://www.linkedin.com/in/ana-luiza-maciell/',
   },

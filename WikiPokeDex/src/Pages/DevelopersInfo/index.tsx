@@ -7,7 +7,7 @@ import { NavigationProps } from '../../Routes/NavegationPage';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { developers } from './Infos'; 
+import { developers } from './Infos';
 import { Linking } from 'react-native';
 
 export function DevelopersInfos() {
