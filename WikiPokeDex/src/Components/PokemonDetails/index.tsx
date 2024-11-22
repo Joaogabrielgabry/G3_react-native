@@ -57,7 +57,7 @@ export function PokemonDetails({ isVisible, onClose, pokemon, abilities }: Pokem
             <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={DetailsStyle.modalScroll}>
             <View style={DetailsStyle.modalBackground}>
                 <View style={DetailsStyle.topNav}>
-                    <Image style={{ width: 150, height: 150 }} source={{ uri: pokemon.sprites.front_default }} />
+                <Image style={{ width: 150, height: 150 }} source={Pokemon} />
                 </View>
                 <View style={DetailsStyle.modalScroll}>
                     <View style={DetailsStyle.modalContent}>

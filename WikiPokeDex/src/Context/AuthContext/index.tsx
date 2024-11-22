@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             const key = `favorites_${login.id}`;
             console.log(`Salvando favoritos na chave: ${key}`, newFavorites);
             await AsyncStorage.setItem(key, JSON.stringify(newFavorites));
-            setFavorites(newFavorites); // Atualiza o estado local
+            setFavorites(newFavorites);
         } catch (error) {
             console.error("Erro ao salvar favoritos:", error);
         }
@@ -98,15 +98,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const handleLogin = async (user: LoginFormProps) => {
         try {
             console.log("Usuário logando:", user);
-            setLogin(user); // Define o estado de login como objeto
-            setIsLogged(true); // Define o estado de login
-            await AsyncStorage.setItem("currentUser", JSON.stringify(user)); // Salva o objeto do usuário
+            setLogin(user);
+            setIsLogged(true);
+            await AsyncStorage.setItem("currentUser", JSON.stringify(user));
             console.log("Usuário salvo:", user);
         } catch (error) {
             console.error("Erro ao salvar usuário logado:", error);
         }
-
-        // Garanta que loadFavorites será chamado apenas após o usuário ser atualizado
         setTimeout(() => {
             loadFavorites();
         }, 100);
@@ -115,10 +113,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const handleLogout = async () => {
         try {
             console.log("Logout iniciado");
-            await AsyncStorage.removeItem("currentUser"); // Remove o usuário logado
-            setIsLogged(false); // Atualiza o estado de login
-            setLogin(null); // Remove o usuário atual
-            setFavorites([]); // Limpa os favoritos no estado local
+            await AsyncStorage.removeItem("currentUser");
+            setIsLogged(false);
+            setLogin(null);
+            setFavorites([]);
             console.log("Logout concluído e favoritos limpos localmente");
         } catch (error) {
             console.error("Erro ao realizar logout:", error);
