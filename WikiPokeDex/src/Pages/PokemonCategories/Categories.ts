@@ -2,39 +2,46 @@ import { StyleSheet } from 'react-native';
 
 export const CategoriesStyle = StyleSheet.create({
     speciesItem: {
-        width: '100%',
-        padding: 10,
-        marginVertical: 5,
-        backgroundColor: '#f8f8f8',
-        borderRadius: 8,
-        borderWidth: 2,
-        borderColor: '#BF920A',
-    },
-    selectedItem: {
-        backgroundColor: '#4caf50',
-        borderColor: '#388e3c',
+        width: '90%',
+        padding: 15,
+        marginVertical: 8,
+        backgroundColor: '#FFFFFF', // Cor branca
+        borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center', // Centralizar conteúdo
+        shadowColor: '#000',
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 4,
+        elevation: 3,
     },
     speciesText: {
-        textAlign: 'center',
-        fontSize: 16,
+        fontSize: 18,
+        fontWeight: 'bold',
         color: '#333',
+        textTransform: 'capitalize',
+        textAlign: 'center', // Centralizar texto
     },
     PrincipalContent: {
         flex: 1,
         alignItems: 'center',
-        width: '86%',
-        flexDirection: 'column',
-        gap: 15,
+        justifyContent: 'center',
+        backgroundColor: '#FFA500',
+        width: '100%',
     },
     resetButton: {
-        margin:10,
-        backgroundColor:'#1C2B59',
+        margin: 10,
+        backgroundColor: '#FFFFFF', // Cor branca
         padding: 8,
         borderRadius: 15,
+        alignItems: 'center', // Centralizar conteúdo
+        justifyContent: 'center',
     },
     resetButtonText: {
         color: '#BF920A',
         fontSize: 19,
         fontWeight: 'bold',
+        textAlign: 'center',
     },
 });

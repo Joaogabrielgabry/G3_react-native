@@ -11,11 +11,32 @@ import { SearchBar } from '../../Components/SearchBar';
 import { useCategory } from '../../context/CategoryContext';
 import { NavigationProps } from '../../Routes/NavegationPage';
 
-
 interface PokemonTypeProps {
     name: string;
     url: string;
 }
+
+const typeIcons: Record<string, string> = {
+    normal: '⚪',
+    fighting: '🥊',
+    flying: '✈️',
+    poison: '☢️',
+    ground: '⛰️',
+    rock: '🪨',
+    bug: '🐛',
+    ghost: '👻',
+    steel: '⚙️',
+    fire: '🔥',
+    water: '💧',
+    grass: '🌿',
+    electric: '⚡',
+    psychic: '🧠',
+    ice: '🧊',
+    dragon: '🐉',
+    dark: '🌑',
+    fairy: '✨',
+    stellar: '🌟',
+};
 
 export function PokemonCategories() {
     const [types, setTypes] = useState<PokemonTypeProps[]>([]);
@@ -42,7 +63,7 @@ export function PokemonCategories() {
     };
 
     const handleResetCategories = () => {
-        setSelectedCategory(null); 
+        setSelectedCategory(null);
         navigation.goBack()
     };
 
@@ -67,24 +88,19 @@ export function PokemonCategories() {
                 search={<SearchBar onChangeText={(text) => setSearchTerm(text)} />}
             />
             <View style={CategoriesStyle.PrincipalContent}>
-                <Button
-                    title="Mostrar Todos os Pokémon"
-                    handleOnChange={handleResetCategories}
-                    styleContainer={CategoriesStyle.resetButton}
-                    textStyle={CategoriesStyle.resetButtonText}
-                />
                 <FlatList
-                style={{ width: '100%', flexGrow:1 }}
+                    style={{ width: '100%', flexGrow: 1 }}
                     data={filteredTypes}
                     keyExtractor={(item) => item.name}
                     renderItem={({ item }) => (
-
-                        <Button
-                        title={item.name}
-                        handleOnChange={() => handleCategorySelect(item.name)}
-                        styleContainer={CategoriesStyle.speciesItem}
-                        textStyle={CategoriesStyle.speciesText}
-                        />
+                        <TouchableOpacity
+                            style={CategoriesStyle.speciesItem}
+                            onPress={() => handleCategorySelect(item.name)}
+                        >
+                            <Text style={CategoriesStyle.speciesText}>
+                                {typeIcons[item.name.toLowerCase()] || '❔'} {item.name}
+                            </Text>
+                        </TouchableOpacity>
                     )}
                 />
             </View>
