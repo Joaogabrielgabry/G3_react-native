@@ -89,7 +89,7 @@ export function PokemonCategories() {
             />
             <View style={CategoriesStyle.PrincipalContent}>
                 <FlatList
-                    style={{ width: '100%', flexGrow: 1 }}
+                    style={{ width: '100%', flex: 1, padding: 20 }}
                     data={filteredTypes}
                     keyExtractor={(item) => item.name}
                     renderItem={({ item }) => (

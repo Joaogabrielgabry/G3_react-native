@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const CategoriesStyle = StyleSheet.create({
     speciesItem: {
-        width: '90%',
-        padding: 15,
+        width: '100%',
+        padding: 13,
         marginVertical: 8,
         backgroundColor: '#FFFFFF', // Cor branca
         borderRadius: 10,
@@ -26,6 +26,7 @@ export const CategoriesStyle = StyleSheet.create({
     PrincipalContent: {
         flex: 1,
         alignItems: 'center',
+        alignContent: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFA500',
         width: '100%',
